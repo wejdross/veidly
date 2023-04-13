@@ -1,0 +1,485 @@
+# defines work like yaml preprocessor.
+# before file is processed this object (and only this object) will be read
+# variables in here will be decrypted (if needed) and switched based on version: dev, local, ...
+# later every occurrence of define will be substituted with defined value
+defines:
+  payout_config_path: /payments
+  notify_email: tech@veidly.com
+  pg_db: sportdb
+  apikey:
+    local: test
+    dev: EXT:/shared/secrets.yml:apikey
+    prod: EXT:/shared/secrets.yml:apikey
+  host:
+    local: 127.0.0.1
+    dev: EXT:/shared/secrets.yml:fqdn
+    prod: EXT:/shared/secrets.yml:fqdn
+  api_pub_url:
+    local: http://${host}:8080
+    dev: https://${host}
+    prod: https://${host}
+  ui_pub_url:
+    local: http://${host}:3000
+    dev: https://${host}
+    prod: https://${host}
+  # never take logo from localhost, gmail will complain
+  logo_pub_url:
+    local: https://dev.veidly.com
+    dev: https://${host}
+    prod: https://${host}
+  ver:
+    local: local
+    dev: dev
+    prod: prod
+  hmac64:
+    local: NVY2+rg7LmK3EUf4Ge/fw8ttbAdKiw6GCO4hEQ2nWqQ=
+    dev: EXT:/shared/secrets.yml:hmac64
+    prod: EXT:/shared/secrets.yml:hmac64
+  p24_username:
+    local: "202115"
+    dev: "202115"
+    prod: EXT:/shared/secrets.yml:p24_username
+  p24_password:
+    local: 990ad1193d5384b6989e3acae1e9c788
+    dev: 990ad1193d5384b6989e3acae1e9c788
+    prod: EXT:/shared/secrets.yml:p24_password
+  p24_crc:
+    local: 3e33a1c9543d1bc3
+    dev: 3e33a1c9543d1bc3
+    prod: EXT:/shared/secrets.yml:p24_crc
+  p24_url:
+    local: https://sandbox.przelewy24.pl
+    dev: https://sandbox.przelewy24.pl
+    prod: https://secure.przelewy24.pl
+  pg_password:
+    local: postgres
+    dev: EXT:/shared/secrets.yml:pg_pass
+    prod: EXT:/shared/secrets.yml:pg_pass
+  chat_cass_password:
+    local: tZZ8Ye02J3aC6em4MHpNufSmofWScWgAYFKvKbZxCMFv+g8JSblxCvWUy8SnGaQO
+    dev: EXT:/shared/secrets.yml:cass_pass
+    prod: EXT:/shared/secrets.yml:cass_pass
+  chat_cass_hosts: 
+    local: '["127.0.0.1"]'
+    dev: EXT:/shared/secrets.yml:cass_hosts
+    prod: EXT:/shared/secrets.yml:cass_hosts
+  chat_cass_ca_path:
+    local: ""
+    dev: /shared/cass_ca.cert
+    prod: /shared/cass_ca.cert
+  chat_cass_replication:
+    local: "{'class':'SimpleStrategy', 'replication_factor' : 1}"
+    dev: EXT:/shared/secrets.yml:cass_replication
+    prod: EXT:/shared/secrets.yml:cass_replication
+  chat_hmac_64:
+    local: NVY2+rg7LmK3EUf4Ge/fw8ttbAdKiw6GCO4hEQ2nWqQ=
+    dev: EXT:/shared/secrets.yml:chat_hmac64
+    prod: EXT:/shared/secrets.yml:chat_hmac64
+  no_reply_smtp_username:
+    local: test-no-reply@veidly.com
+    dev: no-reply@veidly.com
+    prod: no-reply@veidly.com
+  no_reply_smtp_password:
+    local: \<?W!62sTvk-^:Ej
+    dev: EXT:/shared/secrets.yml:no_reply_smtp_password
+    prod: EXT:/shared/secrets.yml:no_reply_smtp_password
+  google_oauth_client_id:
+    local: 138467161193-f5k71q6l2kcr53sjqhc3bdv1lprvtkj1.apps.googleusercontent.com
+    dev: EXT:/shared/secrets.yml:google_client_id
+    prod: EXT:/shared/secrets.yml:google_client_id
+  google_oauth_client_secret: 
+    local: 6z84Ozx-Hn-_7leB_2zlNZpD
+    dev: EXT:/shared/secrets.yml:google_oauth_client_secret
+    prod: EXT:/shared/secrets.yml:google_oauth_client_secret
+  api_port:
+    local: "8080"
+    dev: "1580"
+    prod: "1580"
+
+# api config
+
+instr_penalty: &instr_penalty
+  # per month, counts amount of times instructor may request refund without penalties
+  free_instr_shots: 2
+  # this must be set to true if free_instr_shots = 0
+  no_instr_shots: false
+  # this is % of training / subscription price which will be added as an penalty
+  # for example with price=200 USD and instr_shot_penalty_percent=20 total of 40 USD will be added as penalty
+  instr_shot_penalty_percent: 20
+  # this must be set to true if instr_shot_penalty_percent = 0
+  no_instr_shot_penalty: false
+  # penalty will be subtracted from all instructor payouts, but its value will never be bigger than following percent
+  # for example: instr_shot_no_more_than_percent=50 and penalty was 40USD, with the next payout 10USD only 5USD will be subtracted
+  # penalty remaining will be 45USD and will be subtracted from yet another payout, until its 0
+  instr_shot_no_more_than_percent: 50
+
+invoicing:
+  company_lines:
+    - VEIDLY sp. z o.o.
+    - 'REGON: 522681668, NIP: 6351862693'
+    - ul. LIPOWA, nr 44 
+    - MIKOŁÓW, kod 43-190, POLSKA
+
+api:
+  jwt:
+    hmac64: ${hmac64}
+    duration_hrs: 24
+  addr: "0.0.0.0:${api_port}"
+  body_limit:
+    b: 0
+    k: 0
+    m: 5
+    g: 0
+  release: false
+  delay: 3
+  with_tls: false
+  cert_path: ./cert
+  key_path: ./key
+
+static:
+  enabled: true
+  basepath: ./static_files
+  baseurl: ${api_pub_url}/api/static
+  http_base_path: /api/static
+
+review:
+  review_exp: 168h # 7 days
+
+train:
+  allowed_currencies:
+    PLN: true
+  max_tr_secondary_images: 6
+  max_age: 99
+  max_requirement_str_len: 128
+  max_requirement_arr_len: 6
+
+search:
+  max_query_length: 256
+  google_translate:
+    token: placeholder
+    enabled: false
+  lingua_api_url: http://127.0.0.1:10000
+
+log:
+  # this email address will be used to send notification emails 
+  notify_email: ${notify_email}
+  # next states on which to notify
+  # see rsv/rsv.go RsvState for possible states 
+  notify_on:
+    error: true
+    dispute: true
+  notify_enabled: true
+  notify_ver: ${ver}
+  sm_log_dir: rsv_log/
+
+schedule:
+  max_schedule_period_in_days: 60
+
+rsv:
+  max_page_size: 100
+  rsv_details_url_fmt: ${ui_pub_url}/rsv_details?id=%s&type=%s&new=true
+  payout_config_url: ${ui_pub_url}${payout_config_path}
+
+  # % value which will be subtracted from instructor payout
+  # must be between 0 and 100
+  service_fee: 10
+  # % value which will be added to training price
+  # must be between 0 and 100
+  processing_fee: 0
+  # % value of the value which will be returned to user upon cancellation
+  refund_amount: 100
+
+  # link expiration dates for specific scenarios
+  link_expire: 6h
+  link_express_expire: 1h
+  link_manual_expire: 6h
+
+  # check date of reservation vs training start date
+  # if rsv occurs too late then error will be returned
+  link_express_at_least_before: 0m
+  link_at_least_before: 24h
+  link_manual_at_least_before: 48h
+
+  payout_delay_after_rsv_end: 4h
+
+  adyen_sm:
+    # this email address will be used to send notification emails 
+    notify_email: ${notify_email}
+    # next states on which to notify
+    # see rsv/rsv.go RsvState for possible states 
+    notify_on:
+      error: true
+      dispute: true
+    notify_enabled: true
+    notify_ver: ${ver}
+    sm_log_dir: rsv_log/
+    sm_max_retries: 3
+    # on every retry, sm_timeout will be set to now + <this value>
+    sm_retry_timeout: 1h30m
+    instant_payout_timeout: 1h
+    capture_timeout: 6h
+    refund_timeout: 24h
+    <<: *instr_penalty
+
+p24:
+  notify_enabled: true
+  notify_ver: ${ver}
+  notify_email: ${notify_email}
+  auth:
+    username: ${p24_username}
+    password: ${p24_password}
+    apikey: ${apikey}
+  base_url: ${p24_url}
+  crc: ${p24_crc}
+  notify_endpoint_path: /wh
+  donate_return_url: ${ui_pub_url}?donated=true
+  api_pub_url: ${api_pub_url}
+
+lang:
+  api_lang:
+    pl: true
+    en: true
+  default_lang: en
+  tag_path: placeholder
+  lang_path: ../../lang/data/joined.json
+  tag_path: ../../lang/data/sports-release.json
+  tag_category_path: ../../lang/data/categories.json
+  pub_url: ${logo_pub_url}
+
+user:
+  enable_retention_loop: true
+   # maximum time to live: 30 minutes
+   # how long user will live after 2fa registration. 
+   # if not validated during this period user will be removed
+  retention_loop_record_ttl_seconds: 1800
+  # how ofter program should check for expired users
+   # check each minute
+  retention_loop_interval_seconds: 60
+  use_2fa: true
+  # redirect to api link base
+  public_url: ${api_pub_url}
+  # redirect to ui login page
+  register_redirect_url: ${ui_pub_url}/register/finish?email=%s&state=%s&return_url=%s
+  # redirect to password reset page
+  ui_pass_reset_url: ${ui_pub_url}/reset_password?token=%s
+  user_country:
+    PL: true
+  # oauth settings
+  use_oauth: true
+  google:
+    client_id: ${google_oauth_client_id}
+    client_secret: ${google_oauth_client_secret}
+    redirect_url: ${ui_pub_url}/oauth/finish?oauth=google
+    scopes:
+      - https://www.googleapis.com/auth/userinfo.email
+
+rsv_qr:
+  qr_eval_url_fmt: ${ui_pub_url}/qr/eval?id=%v&type=rsv
+  max_qr_codes: 10
+
+sub_qr:
+  qr_eval_url_fmt: ${ui_pub_url}/qr/eval?id=%v&type=sub
+  max_qr_codes: 10
+
+
+no_reply_smtp:
+  host: mail.infra.veidly.com
+  username: ${no_reply_smtp_username}
+  password: ${no_reply_smtp_password}
+  port: 587
+  from: veidly
+
+dc:
+  max_codes_per_instr: 10
+
+sub:
+  link_expire_after: 6h
+  wait_capture_timeout: 6h
+  instant_payout_timeout: 1h
+
+  # % of total
+  service_fee: 10
+  # % of total
+  processing_fee: 0
+  # % value of the value which will be returned to user upon cancellation
+  refund_amount: 100
+
+  sub_details_url_fmt: ${ui_pub_url}/sub_details?id=%s&new=true
+  # after paying for subscription, payout will happen after this time
+  payout_after: 48h
+  payout_config_url: ${ui_pub_url}${payout_config_path}
+
+  adyen_sm:
+    # this email address will be used to send notification emails 
+    notify_email: ${notify_email}
+    # next states on which to notify
+    # see rsv/rsv.go RsvState for possible states 
+    notify_on:
+      error: true
+      dispute: true
+    notify_enabled: true
+    notify_ver: ${ver}
+    sm_log_dir: sub_log/
+    sm_max_retries: 3
+    # on every retry, sm_timeout will be set to now + <this value>
+    sm_retry_timeout: 1h30m
+    instant_payout_timeout: 1h
+    capture_timeout: 6h
+    refund_timeout: 24h
+    <<: *instr_penalty
+
+
+chat:
+  # each instance must have unique identifier,
+  # you can make them incremental ints, uuids i dont give a duck
+  # just make them unique
+  server_id: 123
+  ui_join_chat_url_fmt: ${ui_pub_url}/chat?join=%v&crid=%v
+  open_url_fmt: ${api_pub_url}/api/chat/open/%s
+  open_path_fmt: /chat/open/%s
+  not_ring_size: 3
+  # email notification will not happen more often than {email_not_after}
+  email_not_after: 6h
+  jwt:
+    hmac64: ${chat_hmac_64}
+    duration_hrs: 2400
+  cassandra:
+    hosts: ${chat_cass_hosts}
+    username: cassandra
+    password: ${chat_cass_password}
+    ca_path: ${chat_cass_ca_path}
+    consistency: 1
+    proto_version: 4
+    keyspace: sportdb
+    ddl:
+      - > 
+        create keyspace if not exists %s 
+        with replication = ${chat_cass_replication}
+      
+      # table containing user messages
+      - >
+        create table if not exists %s.messages (
+          chat_room_id  uuid,
+          timestamp     bigint,
+          user_id       uuid,
+          content       text,
+          primary key ( ( chat_room_id ), timestamp)
+        )
+        with clustering order by (timestamp desc)
+
+      - >
+        create index if not exists on %s.messages ( user_id )
+      
+      # allows for searching for all members in chat room 
+      #   with option to find specifc member
+      - >
+        create table if not exists %s.chat_room_members (
+          chat_room_id        uuid,
+          user_id             uuid,
+          email               text,
+          display_name        text,
+          language            text,
+          last_notified       timestamp,
+          last_read_msg       timestamp,
+          server_id           text,
+          chat_room_name      text,
+          icon_relpath        text,
+          primary key ( ( chat_room_id ), user_id )
+        )
+      
+      # allow for user to find all of its chat rooms
+      - >
+        create index if not exists on %s.chat_room_members ( user_id )
+
+      # metadata for chat room
+      - >
+        create table if not exists %s.chat_rooms (
+          chat_room_id            uuid,
+          flags                   int,
+          last_msg_timestamp      bigint,
+          primary key ( ( chat_room_id ) )
+        )
+
+      # invite tokens are generated by chat room members,
+      # and can be used by anyone to join said room 
+      - >
+        create table if not exists %s.access_tokens (
+          chat_room_id            uuid,
+          creator_id              uuid,
+          token_value             uuid,
+          user_id                 uuid,
+          expires_on              timestamp,
+          primary key ( ( chat_room_id ), token_value )
+        )
+
+# postgres config
+
+pg:
+  version: v1.3.2
+  driver: postgres
+  defines:
+    - db: ${pg_db}
+  base_target: &base_target
+    server: ["127.0.0.1"]
+    password: ${pg_password}
+    args:
+      sslmode: disable
+    user: postgres
+  targets:
+    # this target can be used to redeploy database
+    - name: reset
+      << : *base_target
+      on_demand: true
+      exec:
+        - type: stmt
+          args: ["drop database ${db}"]
+          execute: true
+          err: warn
+    # this target makes sure database is created before merge
+    - name: master
+      << : *base_target
+      database: postgres
+      exec:
+        - type: stmt
+          args: ["create database ${db}"]
+          err: warn abort
+          execute: true
+        # you may specify here additional targets. 
+        # they wont be executed unless database is being recreated
+    # on demand target which cleans ip table
+    - name: dropip
+      << : *base_target
+      on_demand: true
+      database: ${db}
+      exec:
+        - type: stmt
+          args: ["truncate table ip"]
+          err: warn
+    # this target merges local and remote db schema
+    - name: ddl
+      << : *base_target
+      database: ${db}
+      exec:
+        - type: merge
+          args: [
+            "user/ddl/",
+            "train/ddl/",
+            "rsv/ddl/",
+            "ip/ddl/",
+            "instr/ddl/",
+            "review/ddl/",
+            "rsv_qr/ddl/",
+            "dc/ddl/",
+            "charts/ddl",
+            "sub/ddl",
+            "adyen_sm/ddl",
+            "sub_qr/ddl/",
+            "search/ddl",
+            "invoicing/ddl",
+            "adyen/ddl"
+          ]
+        - type: script
+          args: [
+            "search/scripts"
+          ]
+

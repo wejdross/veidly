@@ -1,0 +1,86 @@
+table:
+  name: users
+  columns:
+  
+    - name: id
+      type: uuid
+
+    - name: email
+      type: text
+  
+    - name: passh
+      type: bytea
+  
+      # i dont see need for country for now
+      # - name: country
+      #   type: text
+      #   nullable: true
+
+    - name: access_failed
+      type: int
+      default: 0
+
+    - name: enabled
+      type: bool
+      default: false
+    
+    - name: created_on
+      type: timestamp
+
+      # mfa_token is used to validate multi factor authorization without
+      # exposing user id
+    - name: mfa_token
+      type: text
+      default: "''"
+
+      # used to authorize password reset via 2fa
+    - name: forgot_password_token
+      type: text
+      default: "''"
+
+    - name: oauth_provider
+      type: text
+      default: "''"
+
+    - name: oauth_id
+      type: text
+      default: "''"
+
+    # user info
+
+    - name: user_data
+      type: jsonb
+      default: "'{}'"
+    - name: avatar_relpath
+      type: text
+      default: "''"
+
+    # contact data
+
+    # - name: contact_email
+    #   type: text
+    # - name: contact_phone
+    #   type: text
+    - name: contact_data
+      type: jsonb
+      default: "'{}'"
+
+  primary:
+    name: "users_pk"
+    columns:
+      - name: id
+
+  unique:
+    - name: "users_email_ix"
+    
+      columns:
+        - name: email
+
+  indexes:
+    - name: "users_mfa_token"
+      columns:
+        - name: mfa_token
+    - name: "users_pass_token"
+      using: hash
+      columns:
+        - name: forgot_password_token

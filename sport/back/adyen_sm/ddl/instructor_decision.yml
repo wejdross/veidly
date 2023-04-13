@@ -1,0 +1,8 @@
+type:
+  # elaboration on those values is present in rsv.go under InstrDecision definition
+  name: instructor_decision
+  type: enum
+  values:
+    - unset
+    - approve
+    - reject

@@ -1,0 +1,151 @@
+table:
+  name: trainings
+  columns:
+    - name: id
+      type: uuid
+    - name: instructor_id
+      type: uuid
+    - name: title
+      type: text
+    - name: description
+      type: text
+    
+    - name: date_start
+      type: date
+    - name: date_end
+      type: date
+
+    - name: capacity
+      type: int
+
+    - name: requirements
+      type: text[]
+      using: "'{}'"
+      nullable: true
+    - name: required_gear
+      type: text[]
+      nullable: true
+    - name: recommended_gear
+      type: text[]
+      nullable: true
+    - name: instructor_gear
+      type: text[]
+      nullable: true
+    - name: min_age
+      type: int
+      default: 0
+    - name: max_age
+      type: int
+      default: 0
+
+    - name: location_text
+      type: text
+    - name: location_lat
+      type: numeric
+      precision: 8
+      scale: 6
+    - name: location_lng
+      type: numeric
+      precision: 9
+      scale: 6
+    - name: location_country
+      type: text
+      
+    # lowest unit, as per payu specification
+    # example in polish currency value 10,12 PLN 
+    # would be represented in this field as 1012
+    - name: price
+      type: int
+    - name: currency
+      type: text
+    - name: tags
+      type: text[]
+      nullable: true
+    - name: diff
+      type: int[]
+      nullable: true
+
+    - name: number_reviews
+      type: int
+      default: 0
+    - name: avg_mark
+      type: int
+      default: 0
+
+    - name: manual_confirm
+      type: boolean
+      default: false
+    - name: allow_express
+      type: boolean
+      default: false
+    - name: created_on
+      type: timestamp
+      default: (now())
+
+    - name: main_img_relpath
+      type: text
+      default: "''"
+    - name: secondary_img_relpaths
+      type: text[]
+      nullable: true
+
+    - name: disabled
+      type: boolean
+      default: false
+
+    - name: training_supports_disabled
+      type: boolean
+      default: false
+
+    - name: place_supports_disabled
+      type: boolean
+      default: false
+    
+  primary:
+    name: trainings_pk
+    columns:
+      - name: id
+  # unique:
+  #   - name: instructor_trainings_unique_id
+  #     columns:
+  #     - name: id
+  foreign:
+    - name: instructor_trainings_instructors_fk
+      columns:
+        - name: instructor_id
+      ref_table: instructors
+      ref_columns:
+        - name: id
+      on_delete: cascade
+    - name: trainings_groups_fk
+      columns:
+        - name: instructor_id
+      ref_table: instructors
+      ref_columns:
+        - name: id
+      on_delete: cascade
+  indexes:
+    # - name: trainings_lat_btree
+    #   is_clustered: true
+    #   columns:
+    #     - name: location_lat
+    # - name: trainings_lng_btree
+    #   columns:
+    #     - name: location_lng
+    # - name: foo_ix
+    #   columns:
+    #     - name: tags
+    #   tags:
+    #     using: gin
+    - name: training_id_hash
+      using: hash
+      columns:
+        - name: id
+      
+  # unique:
+  #   - name: instructor_trainings_title_unique
+  #     columns:
+  #       - name: title
+
+# CLUSTER AROUND trainings_lat_btree
+

@@ -1,0 +1,61 @@
+table:
+  name: invoices
+  columns:
+    - name: id
+      type: uuid
+    - name: number
+      type: text
+    - name: instructor_id
+      type: uuid
+    - name: obj_type
+      type: text
+    - name: obj_id
+      type: uuid
+    - name: date_of_issue
+      type: timestamp
+    - name: year_of_issue
+      type: int
+    - name: date_of_sale
+      type: timestamp
+    - name: seller
+      type: text[]
+    - name: buyer
+      type: text[]
+    - name: paid
+      type: int
+    - name: method_of_payment
+      type: text
+    - name: rec_qty
+      type: int
+    - name: rec_unit_gross_price
+      type: int
+    - name: rec_vat_rate
+      type: int
+
+  primary:
+    name: invoices_pk
+    columns:
+      - name: id
+
+  indexes:
+    - name: indexes_ix_year_of_issue
+      columns:
+        - name: year_of_issue
+
+  unique:
+    - name: invoices_unique_number
+      columns:
+        - name: number
+
+  foreign:
+    
+    - name: invoices_instructors_fk
+      columns:
+        - name: instructor_id
+      ref_columns:
+        - name: id
+      ref_table: instructors
+      on_delete: cascade
+
+
+

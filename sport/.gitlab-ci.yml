@@ -1,0 +1,254 @@
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "master"
+
+stages:
+  - prepare
+  - build
+  - test
+  - deploy
+
+
+
+
+
+.prep:
+  script:
+    - rm -rf lang
+    - git clone https://gitlab-ci-token:e24MLoTioU6C8x4gq5P1@git.infra.veidly.com/veidly/lang.git
+    - mkdir -p $PWD/back/bin/
+
+prep_prod:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  stage: prepare
+  script:
+    - !reference [.prep, script]
+  tags:
+    - app 
+    - prod
+
+prep_dev:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+  stage: prepare
+  script:
+    - !reference [.prep, script]
+  tags:
+    - app 
+    - dev
+
+
+
+
+
+
+.build_backend_template:
+  script:
+    - 'docker build -t veidly/backend:1 -f back.Dockerfile .'
+
+build_dev_backend:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+  variables:
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  script: 
+    - !reference [.build_backend_template, script]
+  tags:
+    - app
+    - dev
+
+build_prod_backend:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  variables:
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  script: 
+    - !reference [.build_backend_template, script]
+  tags:
+    - app
+    - prod
+
+
+
+
+
+.build_frontend_template:
+  cache:
+    key: node-cache
+    paths:
+      - ui2/node_modules
+  variables:
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: 'false'
+  script:
+    - 'docker run -u $UID:$UID --rm -v $PWD:/app:rw -v /home:/home -e HOME -w=/app/ui2 node:14 make install-$VER'
+    - 'docker run -u $UID:$UID --rm -v $PWD:/app:rw -v /home:/home -e HOME -w=/app/ui2 node:14 make build'
+    - 'docker run -u $UID:$UID --rm -v $PWD:/app:rw -v /home:/home -e HOME -w=/app/ui2 node:14 npm audit fix'
+
+build_dev_frontend:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+  variables:
+    VER: dev
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  cache:
+    !reference [.build_frontend_template, cache]
+  script: 
+    - !reference [.build_frontend_template, script]
+  tags:
+    - app
+    - dev
+
+build_prod_frontend:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  variables:
+    VER: prod
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  cache:
+    !reference [.build_frontend_template, cache]
+  script: 
+    - !reference [.build_frontend_template, script]
+  tags:
+    - app
+    - prod
+
+
+
+
+
+.test_backend_template:
+  variables:
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  script: 
+    - sudo systemctl stop postgresql
+    - docker container rm --force testpg || true
+    - docker container rm --force testcass || true
+    - docker run -d --rm 
+        --net=host 
+        -e POSTGRES_PASSWORD=postgres 
+        --name testpg postgres:13.2
+    - docker run -d --net=host --rm 
+        --name testcass docker.io/library/cassandra:latest
+    - docker run -u $UID:$UID --rm --net=host 
+          -v $PWD:/app:rw -v /home:/home 
+          -e HOME -w=/app/back golang:1.18 make test
+    - docker container rm --force testpg
+    - docker container rm --force testcass
+    - sudo systemctl start postgresql
+
+test_prod_backend:
+  stage: test
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  variables:
+    !reference [.test_backend_template, variables]
+  script: 
+    - !reference [.test_backend_template, script]
+  tags:
+    - app
+    - prod
+
+test_dev_backend:
+  stage: test
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+  variables:
+    !reference [.test_backend_template, variables]
+  script: 
+    - !reference [.test_backend_template, script]
+  tags:
+    - app
+    - dev
+
+
+
+
+
+.deploy_front_template:
+  variables:
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  script:
+    - sudo /usr/bin/cp -af $PWD/ui2/build/* /data/veidly/front/
+    - 'sudo chown -R www-data: /data/veidly/front'
+
+deploy_prod_front:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  variables:
+    !reference [.deploy_front_template, variables]
+  script: 
+    - !reference [.deploy_front_template, script]
+  tags:
+    - app
+    - prod
+
+deploy_dev_front:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+  variables:
+    !reference [.deploy_front_template, variables]
+  script: 
+    - !reference [.deploy_front_template, script]
+  tags:
+    - app
+    - dev
+
+
+.deploy_back_template:
+  variables:
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  script:
+    - 'docker container rm --force backend || true'
+    - docker run 
+        -d --restart unless-stopped 
+        --net=host 
+        -v /data/veidly/back/static_files:/back/bin/static_files:rw 
+        -v /data/veidly/back/shared:/shared 
+        --name backend veidly/backend:1 
+        ./run_api -config ../config.yml -ver $VER
+
+deploy_prod_back:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  variables:
+    VER: prod
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  script: 
+    - !reference [.deploy_back_template, script]
+  tags:
+    - app
+    - prod
+
+deploy_dev_back:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev"
+  variables:
+    VER: dev
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  script: 
+    - !reference [.deploy_back_template, script]
+  tags:
+    - app
+    - dev
+
+
+

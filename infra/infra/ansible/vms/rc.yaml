@@ -1,0 +1,37 @@
+---
+- name: do nothing
+  hosts: rc.infra.veidly.com
+  tags:
+    - infra
+    - backup
+  tasks:
+    - name: backup rocket chat
+      ansible.builtin.shell: "snap run rocketchat-server.backupdb | grep 'can be found' | rev | cut -d' ' -f1 | rev"
+      become: true
+      register: backup_path
+    - name: copy backup
+      ansible.builtin.copy:
+        src: "{{ backup_path.stdout }}"
+        dest: "/data/backup_{{ ansible_date_time.date }}.tar.gz"
+        remote_src: yes
+    - name:
+      ansible.builtin.file:
+        state: absent
+        path: /var/snap/rocketchat-server/common/backup/
+    - name: find all files that are older than 2 days
+      find:
+        paths: /data/
+        age: 2d
+        recurse: yes
+      register: filesOlderThan10
+    - name: remove older than 2d
+      file:
+        path: "{{ item.path }}" 
+        state: absent
+      with_items: "{{ filesOlderThan10.files }}"
+  post_tasks:
+    - import_role:
+        name: veidly_backup
+      vars:
+        backup_minute: "15"
+        backup_hour: "4"

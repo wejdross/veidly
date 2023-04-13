@@ -1,0 +1,60 @@
+- name: ensure {{ gitlab_runner.user }} in group docker
+  ansible.builtin.user:
+    name: veidly
+    state: present
+    groups: "docker"
+    shell: /bin/bash
+    append: yes 
+
+- name: check if gitlab-runner exists
+  ansible.builtin.stat:
+    path: /usr/local/bin/gitlab-runner
+  register: gitlab_runner_binary
+
+- name: download gitlab-runner
+  shell: | 
+    curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+  when: gitlab_runner_binary.stat.exists == False
+
+- name: allow gitlab-runner to execute
+  ansible.builtin.file:
+    path: /usr/local/bin/gitlab-runner
+    owner: root
+    group: root
+    mode: '0751'
+
+- name: verify {{ gitlab_runner.name }} is registered
+  shell: gitlab-runner verify -n "{{ gitlab_runner.name }}"
+  register: gitlab_runner_verify  
+  become: true
+  ignore_errors: true
+
+- name: install gitlan-runner
+  shell: "gitlab-runner install --user={{ gitlab_runner.user }} --working-directory=/home/{{ gitlab_runner.user }}"
+  become: true
+  when: gitlab_runner_verify.rc != 0
+
+- name: start gitlan-runner
+  shell: "gitlab-runner start"
+  become: true
+  when: gitlab_runner_verify.rc != 0
+
+
+# one could also do unregister and ignore potential errors to ensurethat no duplicate runner will be added
+- name: register gitlab-runner
+  shell: |
+    gitlab-runner register                                            \
+      --name "{{ gitlab_runner.name }}"                               \
+      --url "{{ gitlab_runner.api_url }}"                             \
+      --registration-token "{{ gitlab_runner.registration_token }}"   \
+      --non-interactive                                               \
+      --executor    "shell"                                              \
+      --tag-list    "{{ gitlab_runner.tag_list }}"                    \
+      --run-untagged="false"                                          \
+      --locked="true"                                                
+  when: gitlab_runner_verify.rc != 0
+
+- name: remove .bash_logout from home so runner won't crash during prep
+  file: 
+    path: /home/{{ gitlab_runner.user }}/.bash_logout
+    state: absent

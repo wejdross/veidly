@@ -1,0 +1,37 @@
+table:
+  name: sm_log
+  columns:
+    - name: id
+      type: uuid
+    - name: obj_key
+      type: uuid
+    - name: previous_state
+      type: text
+    - name: next_state
+      type: text
+    - name: timestamp
+      type: timestamp
+    - name: success
+      type: boolean
+    - name: source
+      type: text
+    - name: error
+      type: text
+    - name: source_data
+      type: text
+    - name: nstamp
+      type: bigint
+
+  # primary:
+  #   name: sm_log_pk
+  #   columns:
+  #     - name: id
+
+  # foreign:
+  #   - name: sm_log_rsv_fk
+  #     columns:
+  #       - name: rsv_id
+  #     ref_columns:
+  #       - name: id
+  #     ref_table: reservations
+  #     on_delete: cascade

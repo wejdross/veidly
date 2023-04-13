@@ -1,0 +1,1263 @@
+[
+    {
+        "Training": {
+            "ID": "$TRAINING1$",
+            "InstructorID": "$INSTRUCTOR$",
+            "NumberReviews": 0,
+            "AvgMark": 0,
+            "CreatedOn": "$CREATED_ON$",
+            "MainImgUrl": "",
+            "SecondaryImgUrls": [],
+            "MainImgID": "",
+            "SecondaryImgIDs": null,
+            "Title": "GKbwB8qlSVqifs64ZXfL",
+            "Description": "",
+            "DateStart": "0001-01-01T00:00:00Z",
+            "DateEnd": "0001-01-01T00:00:00Z",
+            "Capacity": 1,
+            "Requirements": "",
+            "LocationText": "",
+            "LocationLat": 0,
+            "LocationLng": 0,
+            "LocationCountry": "",
+            "Price": 10000,
+            "Currency": "PLN",
+            "Tags": null,
+            "Diff": null,
+            "ManualConfirm": false,
+            "AllowExpress": false,
+            "Disabled": false
+        },
+        "Schedule": [
+            {
+                "Start": "2028-02-01T08:00:00Z",
+                "End": "2028-02-01T10:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING1_SESSION1$",
+                    "TrainingID": "$TRAINING1$",
+                    "DateStart": "2028-02-01T08:00:00Z",
+                    "DateEnd": "2028-02-01T10:00:00Z",
+                    "RepeatDays": 7,
+                    "Color": "dpD5kB1Ju",
+                    "Remarks": "9KCwBNJiScZmbQNUssIxT1z4IXWjJOHTL2LumZzVXslG9iIDkdnTjFSXO0czygL38UCHHetIBHXWvzzycJCnxCWuvSrTLoF4MbVhF3Pq6sJgIYKbWEsIf7Y1sOHNJJUX"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-08T08:00:00Z",
+                "End": "2028-02-08T10:00:00Z",
+                "Count": 1,
+                "CountUnconfirmed": 0,
+                "IsAvailable": false,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING1_SESSION1$",
+                    "TrainingID": "$TRAINING1$",
+                    "DateStart": "2028-02-01T08:00:00Z",
+                    "DateEnd": "2028-02-01T10:00:00Z",
+                    "RepeatDays": 7,
+                    "Color": "dpD5kB1Ju",
+                    "Remarks": "9KCwBNJiScZmbQNUssIxT1z4IXWjJOHTL2LumZzVXslG9iIDkdnTjFSXO0czygL38UCHHetIBHXWvzzycJCnxCWuvSrTLoF4MbVhF3Pq6sJgIYKbWEsIf7Y1sOHNJJUX"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-15T08:00:00Z",
+                "End": "2028-02-15T10:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING1_SESSION1$",
+                    "TrainingID": "$TRAINING1$",
+                    "DateStart": "2028-02-01T08:00:00Z",
+                    "DateEnd": "2028-02-01T10:00:00Z",
+                    "RepeatDays": 7,
+                    "Color": "dpD5kB1Ju",
+                    "Remarks": "9KCwBNJiScZmbQNUssIxT1z4IXWjJOHTL2LumZzVXslG9iIDkdnTjFSXO0czygL38UCHHetIBHXWvzzycJCnxCWuvSrTLoF4MbVhF3Pq6sJgIYKbWEsIf7Y1sOHNJJUX"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-22T08:00:00Z",
+                "End": "2028-02-22T10:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING1_SESSION1$",
+                    "TrainingID": "$TRAINING1$",
+                    "DateStart": "2028-02-01T08:00:00Z",
+                    "DateEnd": "2028-02-01T10:00:00Z",
+                    "RepeatDays": 7,
+                    "Color": "dpD5kB1Ju",
+                    "Remarks": "9KCwBNJiScZmbQNUssIxT1z4IXWjJOHTL2LumZzVXslG9iIDkdnTjFSXO0czygL38UCHHetIBHXWvzzycJCnxCWuvSrTLoF4MbVhF3Pq6sJgIYKbWEsIf7Y1sOHNJJUX"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-29T08:00:00Z",
+                "End": "2028-02-29T10:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING1_SESSION1$",
+                    "TrainingID": "$TRAINING1$",
+                    "DateStart": "2028-02-01T08:00:00Z",
+                    "DateEnd": "2028-02-01T10:00:00Z",
+                    "RepeatDays": 7,
+                    "Color": "dpD5kB1Ju",
+                    "Remarks": "9KCwBNJiScZmbQNUssIxT1z4IXWjJOHTL2LumZzVXslG9iIDkdnTjFSXO0czygL38UCHHetIBHXWvzzycJCnxCWuvSrTLoF4MbVhF3Pq6sJgIYKbWEsIf7Y1sOHNJJUX"
+                },
+                "Reservations": null
+            }
+        ],
+        "Occs": [
+            {
+                "ID": "$TRAINING1_SESSION1$",
+                "TrainingID": "$TRAINING1$",
+                "DateStart": "2028-02-01T08:00:00Z",
+                "DateEnd": "2028-02-01T10:00:00Z",
+                "RepeatDays": 7,
+                "Color": "dpD5kB1Ju",
+                "Remarks": "9KCwBNJiScZmbQNUssIxT1z4IXWjJOHTL2LumZzVXslG9iIDkdnTjFSXO0czygL38UCHHetIBHXWvzzycJCnxCWuvSrTLoF4MbVhF3Pq6sJgIYKbWEsIf7Y1sOHNJJUX"
+            }
+        ]
+    },
+    {
+        "Training": {
+            "ID": "$TRAINING2$",
+            "InstructorID": "$INSTRUCTOR$",
+            "NumberReviews": 0,
+            "AvgMark": 0,
+            "CreatedOn": "$CREATED_ON$",
+            "MainImgUrl": "",
+            "SecondaryImgUrls": [],
+            "MainImgID": "",
+            "SecondaryImgIDs": null,
+            "Title": "Z5MK47WSXevXTChMGDB8",
+            "Description": "",
+            "DateStart": "0001-01-01T00:00:00Z",
+            "DateEnd": "0001-01-01T00:00:00Z",
+            "Capacity": 10,
+            "Requirements": "",
+            "LocationText": "",
+            "LocationLat": 0,
+            "LocationLng": 0,
+            "LocationCountry": "",
+            "Price": 4000,
+            "Currency": "PLN",
+            "Tags": null,
+            "Diff": null,
+            "ManualConfirm": false,
+            "AllowExpress": false,
+            "Disabled": false
+        },
+        "Schedule": [
+            {
+                "Start": "2028-02-01T07:00:00Z",
+                "End": "2028-02-01T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-02T07:00:00Z",
+                "End": "2028-02-02T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-03T07:00:00Z",
+                "End": "2028-02-03T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-04T07:00:00Z",
+                "End": "2028-02-04T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-05T07:00:00Z",
+                "End": "2028-02-05T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-06T07:00:00Z",
+                "End": "2028-02-06T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-07T07:00:00Z",
+                "End": "2028-02-07T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-08T07:00:00Z",
+                "End": "2028-02-08T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-09T07:00:00Z",
+                "End": "2028-02-09T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-10T07:00:00Z",
+                "End": "2028-02-10T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-11T07:00:00Z",
+                "End": "2028-02-11T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-12T07:00:00Z",
+                "End": "2028-02-12T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-13T07:00:00Z",
+                "End": "2028-02-13T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-14T07:00:00Z",
+                "End": "2028-02-14T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-15T07:00:00Z",
+                "End": "2028-02-15T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-16T07:00:00Z",
+                "End": "2028-02-16T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-17T07:00:00Z",
+                "End": "2028-02-17T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-18T07:00:00Z",
+                "End": "2028-02-18T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-19T07:00:00Z",
+                "End": "2028-02-19T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-20T07:00:00Z",
+                "End": "2028-02-20T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-21T07:00:00Z",
+                "End": "2028-02-21T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-22T07:00:00Z",
+                "End": "2028-02-22T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-23T07:00:00Z",
+                "End": "2028-02-23T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-24T07:00:00Z",
+                "End": "2028-02-24T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-25T07:00:00Z",
+                "End": "2028-02-25T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-26T07:00:00Z",
+                "End": "2028-02-26T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-27T07:00:00Z",
+                "End": "2028-02-27T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-28T07:00:00Z",
+                "End": "2028-02-28T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-29T07:00:00Z",
+                "End": "2028-02-29T08:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION1$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T07:00:00Z",
+                    "DateEnd": "2028-02-01T08:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "tTfLWSr5u",
+                    "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-01T06:00:00Z",
+                "End": "2028-02-01T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-02T06:00:00Z",
+                "End": "2028-02-02T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-03T06:00:00Z",
+                "End": "2028-02-03T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-04T06:00:00Z",
+                "End": "2028-02-04T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-05T06:00:00Z",
+                "End": "2028-02-05T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-06T06:00:00Z",
+                "End": "2028-02-06T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-07T06:00:00Z",
+                "End": "2028-02-07T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-08T06:00:00Z",
+                "End": "2028-02-08T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-09T06:00:00Z",
+                "End": "2028-02-09T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-10T06:00:00Z",
+                "End": "2028-02-10T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-11T06:00:00Z",
+                "End": "2028-02-11T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-12T06:00:00Z",
+                "End": "2028-02-12T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-13T06:00:00Z",
+                "End": "2028-02-13T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-14T06:00:00Z",
+                "End": "2028-02-14T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-15T06:00:00Z",
+                "End": "2028-02-15T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-16T06:00:00Z",
+                "End": "2028-02-16T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-17T06:00:00Z",
+                "End": "2028-02-17T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-18T06:00:00Z",
+                "End": "2028-02-18T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-19T06:00:00Z",
+                "End": "2028-02-19T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-20T06:00:00Z",
+                "End": "2028-02-20T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-21T06:00:00Z",
+                "End": "2028-02-21T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-22T06:00:00Z",
+                "End": "2028-02-22T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-23T06:00:00Z",
+                "End": "2028-02-23T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-24T06:00:00Z",
+                "End": "2028-02-24T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-25T06:00:00Z",
+                "End": "2028-02-25T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-26T06:00:00Z",
+                "End": "2028-02-26T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-27T06:00:00Z",
+                "End": "2028-02-27T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-28T06:00:00Z",
+                "End": "2028-02-28T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            },
+            {
+                "Start": "2028-02-29T06:00:00Z",
+                "End": "2028-02-29T07:00:00Z",
+                "Count": 0,
+                "CountUnconfirmed": 0,
+                "IsAvailable": true,
+                "IsOrphaned": false,
+                "Occ": {
+                    "ID": "$TRAINING2_SESSION2$",
+                    "TrainingID": "$TRAINING2$",
+                    "DateStart": "2028-02-01T06:00:00Z",
+                    "DateEnd": "2028-02-01T07:00:00Z",
+                    "RepeatDays": 1,
+                    "Color": "nEbx1EaXp",
+                    "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+                },
+                "Reservations": null
+            }
+        ],
+        "Occs": [
+            {
+                "ID": "$TRAINING2_SESSION1$",
+                "TrainingID": "$TRAINING2$",
+                "DateStart": "2028-02-01T07:00:00Z",
+                "DateEnd": "2028-02-01T08:00:00Z",
+                "RepeatDays": 1,
+                "Color": "tTfLWSr5u",
+                "Remarks": "0RQkyXP6WeozhEEWJXIoEKAfh9YIQSGPDelZO7Lhf9RDn1D4oLHaCpSijMkezbMAyxJaWtzEYB4nutMxkNx8wPewJ0HkBKJKoPHWhu1uuutDSm241netJuKgqudXQOA6"
+            },
+            {
+                "ID": "$TRAINING2_SESSION2$",
+                "TrainingID": "$TRAINING2$",
+                "DateStart": "2028-02-01T06:00:00Z",
+                "DateEnd": "2028-02-01T07:00:00Z",
+                "RepeatDays": 1,
+                "Color": "nEbx1EaXp",
+                "Remarks": "IXjw6MjpJwsVwuxaZqcrWXwBuqrMHYmSTCs17BWyrXFBD8sqOnicgJbAbQxMqZs9YLArqM85Gi5Vkkq9YyGH1kOdJyOvc0xqJDBwFkOIqRPuVGSaqbgaqewDXxH5RLqv"
+            }
+        ]
+    },
+    {
+        "Training": {
+            "ID": "$TRAINING3$",
+            "InstructorID": "$INSTRUCTOR$",
+            "NumberReviews": 0,
+            "AvgMark": 0,
+            "CreatedOn": "$CREATED_ON3$",
+            "MainImgUrl": "",
+            "SecondaryImgUrls": [],
+            "MainImgID": "",
+            "SecondaryImgIDs": null,
+            "Title": "saaaHLlYFq9VaXPgebeK",
+            "Description": "",
+            "DateStart": "0001-01-01T00:00:00Z",
+            "DateEnd": "0001-01-01T00:00:00Z",
+            "Capacity": 10,
+            "Requirements": "",
+            "LocationText": "",
+            "LocationLat": 0,
+            "LocationLng": 0,
+            "LocationCountry": "",
+            "Price": 4000,
+            "Currency": "PLN",
+            "Tags": null,
+            "Diff": null,
+            "ManualConfirm": false,
+            "AllowExpress": false,
+            "Disabled": false
+        },
+        "Schedule": [],
+        "Occs": []
+    }
+]

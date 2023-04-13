@@ -1,0 +1,7 @@
+table:
+  name: table_changes
+  columns:
+    - name: channel
+      type: text
+    - name: id
+      type: uuid

@@ -1,0 +1,8 @@
+compilation of stuff with translations
+
+compiled languages:        data/joined.json
+compiled sport categories: data/sports.json
+
+run:
+go run *.go -sl
+to regenerate both sets

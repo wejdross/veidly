@@ -1,0 +1,164 @@
+---
+- name: provision prod
+  hosts: app-prod.infra.veidly.com
+  tags:
+    - app-prod
+    - prod
+  vars:
+    mini_nginx_fqdn: "{{ terra_fqdn }}"
+    nginx_ws_timeout: 604800
+    postgresql_version: 13
+    postgresql_flavor: pgdg
+    postgresql_password: "eri7oothahmah9eiraj2iph6EeXi0eid1ohl6unohgeiGheeme5ung0oolah3Piex"
+    mini_nginx_config: |
+      server {
+          listen 80 default_server;
+          listen [::]:80 default_server;
+          server_name veidly.com;
+          return 301 https://$server_name$request_uri;
+      }
+
+      server {
+          listen 443 ssl http2;
+          listen [::]:443 ssl http2;
+          server_name veidly.com;
+          client_max_body_size 30M;
+          ssl_certificate_key /etc/letsencrypt/live/{{ mini_nginx_fqdn }}/privkey.pem;
+          ssl_certificate /etc/letsencrypt/live/{{ mini_nginx_fqdn }}/fullchain.pem;
+          ssl_session_cache shared:SSL:50m;
+          ssl_session_tickets off;
+          ssl_protocols TLSv1.2 TLSv1.3;
+          ssl_ciphers HIGH:!aNULL:!MD5;
+          ssl_stapling on;
+          ssl_stapling_verify on;
+          add_header X-Content-Type-Options nosniff;
+          add_header X-Frame-Options "sameorigin";
+          add_header X-XSS-Protection "1; mode=block";
+          add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+
+          root /data/veidly/front;
+
+          location ~ /api/chat/notify/open/? {
+            proxy_pass http://127.0.0.1:1580;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
+            proxy_set_header Host $host;
+            proxy_connect_timeout {{ nginx_ws_timeout }};
+            proxy_send_timeout {{ nginx_ws_timeout }};
+            proxy_read_timeout {{ nginx_ws_timeout }};
+          }
+
+          location ~ /api/chat/open/? {
+            proxy_pass http://127.0.0.1:1580;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
+            proxy_set_header Host $host;
+            proxy_connect_timeout {{ nginx_ws_timeout }};
+            proxy_send_timeout {{ nginx_ws_timeout }};
+            proxy_read_timeout {{ nginx_ws_timeout }};
+          }
+
+          location /api/ {
+            proxy_pass http://127.0.0.1:1580;
+          }
+
+          location / {
+              try_files $uri /index.html;
+          }
+      }
+  pre_tasks:
+    - name: create veidly group
+      group:
+        name: veidly
+        state: present
+    - name: create veidly user
+      ansible.builtin.user:
+        name: veidly
+        state: present
+        groups: "veidly, sudo"
+        shell: /bin/bash
+        append: true
+    - name: create veidly directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        owner: veidly
+        group: veidly
+        mode: 0755
+        state: directory
+      loop:
+        - /data/veidly/back
+        - /data/veidly/front
+        - /data/veidly/pg
+        - /data/veidly/back/key.d
+        # static files should and will be removed
+        - /data/veidly/back/static_files
+    - name: create private veidly directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        owner: veidly
+        group: veidly
+        mode: 0700
+        state: directory
+      loop:
+        - /data/veidly/back/shared
+  roles:
+  - role: iptables_raw
+  - role: ansible-role-docker
+  - role: veidly_user
+  - role: mini_nginx
+    tags:
+      - mini-nginx-dev
+  - role: postgresql
+  - role: certbot
+    tags:
+      - give-me-certs-prod
+    vars:
+      certbot_create_if_missing: true
+      certbot_test_endpoint: false
+      certbot_admin_email: "tech@veidly.com"
+      certbot_certs:
+        - domains:
+            - "{{ terra_fqdn }}"
+            - veidly.com
+  - role: gitlab_runner
+    vars:
+      gitlab_runner:
+        registration_token: GR1348941eAyR46-sR49x7No_-bRo
+        api_url: https://git.infra.veidly.com/
+        tag_list: "app, prod"
+        user: veidly
+        name: "app-prod"
+  tasks:
+    - name: iptables
+      iptables_raw:
+        name: veidly_app
+        rules: |
+          -A INPUT -i lo -j ACCEPT
+          -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+          -A INPUT -p tcp -m tcp --match multiport --dports 22,80,443,9100 -j ACCEPT
+          -P INPUT DROP
+          -P OUTPUT ACCEPT
+          -P FORWARD DROP
+        keep_unmanaged: yes
+        state: present
+    - name: ensure secrets are uploaded to the app server
+      tags:
+        - secrets
+      copy:
+        src: "{{ playbook_dir }}/../files/secrets.prod.yaml"
+        # this .yml should be migrated imho    \/
+        dest: "/data/veidly/back/shared/secrets.yml"
+        owner: veidly
+        group: veidly
+        mode: '0600'
+    - name: ensure cassandra ca_cert is uploaded to the app server
+      tags:
+        - secrets
+      copy:
+        src: "{{ playbook_dir }}/ssl/ca.cert"
+        dest: "/data/veidly/back/shared/cass_ca.cert"
+        owner: veidly
+        group: veidly
+        mode: '0600'

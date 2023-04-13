@@ -1,0 +1,1 @@
+*@{{ postfix_default_domain }}   default._domainkey.{{ postfix_default_domain }}

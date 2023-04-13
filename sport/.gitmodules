@@ -1,0 +1,3 @@
+[submodule "lang"]
+	path = lang
+	url = git@git.infra.veidly.com:veidly/lang.git

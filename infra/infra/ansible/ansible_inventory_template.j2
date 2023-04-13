@@ -1,0 +1,29 @@
+# terra_fqdn is necessary because new machines have problems with ansible_fqdn fact
+[prod_cluster]
+%{~ for ip in prod_cluster ~}
+%{~ if ip != ""}
+${ip}
+%{~ else ~}
+%{endif ~}
+%{ endfor }
+
+[cass-dev]
+%{~ for ip in cass_dev_cluster ~}
+%{~ if ip != ""}
+${ip}
+%{~ else ~}
+%{endif ~}
+%{ endfor }
+
+[cass-prod]
+%{~ for ip in cass_prod_cluster ~}
+%{~ if ip != ""}
+${ip}
+%{~ else ~}
+%{endif ~}
+%{ endfor }
+
+[non_terraform]
+# those hosts are not managed by terraform, needs to be migrated in future, now it's ok to keep them
+# please keep everything as 
+mail.infra.veidly.com terra_fqdn=mail.infra.veidly.com

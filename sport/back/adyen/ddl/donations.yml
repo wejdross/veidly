@@ -1,0 +1,9 @@
+table:
+  name: donations
+  columns:
+    - name: timestamp
+      type: timestamp
+    - name: email
+      type: text
+    - name: donation_amount
+      type: int

@@ -1,0 +1,130 @@
+---
+- name: setup mysql on MAIL for postfix purposes
+  hosts: mail.infra.veidly.com
+  tags:
+    - infra
+    - mail
+  tasks:
+    - name: add mail rules
+      iptables_raw:
+        name: mail rules
+        rules: |
+          -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 587 -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 25 -j ACCEPT
+        keep_unmanaged: yes
+        state: present
+    - name: Create Floating-IP config file
+      ansible.builtin.copy:
+        dest: /etc/netplan/60-my-floating-ip.yaml
+        content: |
+          network:
+            version: 2
+            renderer: networkd
+            ethernets:
+              eth0:
+                addresses:
+                  - 95.217.25.142/32
+    - name: restart network
+      shell: "netplan apply"
+    - name: backup postfix
+      ansible.builtin.cron:
+        name: "backup postfix"
+        minute: "5"
+        job: "rsync -avz /var/spool/postfix /data"
+    - name: backup mails
+      ansible.builtin.cron:
+        name: "backup mails"
+        minute: "5"
+        job: "rsync -avz /var/mail /data"
+    - name: backup dkim
+      ansible.builtin.cron:
+        name: "backup dkim"
+        minute: "5"
+        job: "rsync -avz /etc/opendkim* /data"
+  roles:
+    # create database for postfix + user to operate on it
+    - role: ansible-role-mysql
+      vars: 
+        mysql_databases: 
+          - name: postfix
+            collation: utf8_unicode_ci
+            encoding: utf8
+        mysql_users:
+          - name: postfixer
+            host: localhost
+            password: ene-due-rabe-zezarl-putin-zabe
+            priv: "postfix.*:ALL"
+    - role: certbot
+      vars:
+        certbot_create_if_missing: true
+        certbot_admin_email: "tech@veidly.com"
+        certbot_create_standalone_stop_services:
+          - postfix
+          - dovecot
+        certbot_certs:
+          - domains:
+            - "{{ ansible_fqdn }}"
+    - role: ansible-role-postfix-dovecot
+      vars:
+        postfix_dovecot_mysql_db_name: postfix
+        postfix_dovecot_mysql_user: postfixer
+        postfix_dovecot_mysql_password: ene-due-rabe-zezarl-putin-zabe
+        postfix_default_domain: veidly.com
+        dovecot_protocols:
+          - imap
+        dovecot_mail_privileged_group: vmail
+        dovecot_add_example_users: true
+        dovecot_ssl_cert: "/etc/letsencrypt/live/{{ansible_fqdn}}/fullchain.pem"
+        dovecot_ssl_key: "/etc/letsencrypt/live/{{ansible_fqdn}}/privkey.pem"
+        postfix_ssl_cert: "/etc/letsencrypt/live/{{ansible_fqdn}}/fullchain.pem"
+        postfix_ssl_key: "/etc/letsencrypt/live/{{ansible_fqdn}}/privkey.pem"
+        vmail_virtual_domains:
+          - id: 1
+            domain: veidly.com
+        vmail_virtual_users:
+          - id: 1
+            domain_id: 1
+            password: '{CRYPT}$2y$05$4f6vQGEJ.E7WsV/9mZHVr.gB04YW/qNgSM0SrtRjhdzT8Z682FtdS'
+            email: lukasz.widera@veidly.com
+          - id: 2
+            domain_id: 1
+            password: '{CRYPT}$2y$05$t1SMR7/0vi7NSWzwoqeZKe2K5.S8V2qY40v4apMNgxmmpr97b8HbG'
+            email: kamil.zagorski@veidly.com
+          - id: 3
+            domain_id: 1
+            password: '{CRYPT}$2y$05$u.UqmIvFdwnN1uhJQMoLxeMDV7y/x40k/PhLtR.VN2w3/kKoPL.oa'
+            email: no-reply@veidly.com
+          - id: 4
+            domain_id: 1
+            password: '{CRYPT}$2y$05$BOERGoUcuZBnR.g.53LeYeu.pI.kRBR03qtBWGzlGaEzsDBrQ4sje'
+            email: support@veidly.com
+          - id: 5
+            domain_id: 1
+            password: '{CRYPT}$2y$05$yG7JHuIilcjR6Is2n..DYOBRPdX/1Ks.3qacLePdVSG5LDSv8R19C' # Rooh9ahv6lusho2uw2waiciPi
+            email: gitlab@veidly.com
+          - id: 6
+            domain_id: 1
+            # \<?W!62sTvk-^:Ej
+            password: '{CRYPT}$2y$05$afDliNF6BWnmfXP3BxtVY.z/O0vftqRvjThK9mTE/0Ps3t7n5HNaS'
+            email: test-no-reply@veidly.com
+          - id: 7
+            domain_id: 1
+            password: '{CRYPT}$2y$05$PGQcyzCZoQf5m.HnzYbkuOjTeFsWmmBfCGek7KoNHj.BPonpeKrES'
+            email: gm@veidly.com
+          - id: 8
+            domain_id: 1
+            password: '{CRYPT}$2y$05$BOERGoUcuZBnR.g.53LeYeu.pI.kRBR03qtBWGzlGaEzsDBrQ4sje'
+            email: tech@veidly.com
+          - id: 9
+            domain_id: 1
+            password: '{CRYPT}$2y$05$rJ2UoWnDNLHiOPz/onim8.tYFBn2B.QONW90tNGN/zFr.gylx0UOu'
+            email: michal.klos@veidly.com
+            #{CRYPT}$2y$05$u.UqmIvFdwnN1uhJQMoLxeMDV7y/x40k/PhLtR.VN2w3/kKoPL.oa            polska-mistrzem-polski-fifa-cup-2021   
+            #{CRYPT}$2y$05$BOERGoUcuZBnR.g.53LeYeu.pI.kRBR03qtBWGzlGaEzsDBrQ4sje            jedzie-ksiadz-po-karuzeli-lej-mi-pol
+            # to obtain new password please use `doveadm pw` and paste output into this playbook, necessary to delete manually entry in mysql database on mail.infra.veidly.com         
+        vmail_virtual_aliases:
+          - id: 1
+            domain_id: 1
+            source: prezes@veidly.com
+            destination: lukasz.widera@veidly.com

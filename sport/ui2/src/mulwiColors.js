@@ -1,0 +1,18 @@
+export const MulwiColors = {
+  blueDark: "#0D4A6D",
+  blueLight: "#0884C1",
+  greenDark: "#24C084",
+  greenLight: "#5CD3AC",
+  whiteBackground: "whitesmoke",
+  whiteSurface: "whitesmoke",
+  redError: "#B00020",
+  pinkAction: "#FAB5A4",
+  pinkDark: "#BB8779",
+  h1h6Typography: "#424242",
+  subtitleTypography: "#606060",
+  bodyTypography: "#888888",
+  lightGreyAddedByLukasz: "#e4e4e4",
+  black: "#0D4A6D",
+  blackText: "#111111",
+  priceColor: "#4FCC9C",
+};

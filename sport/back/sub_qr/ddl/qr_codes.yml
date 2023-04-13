@@ -1,0 +1,21 @@
+table:
+  name: sub_qr_codes
+  columns:
+    - name: id
+      type: uuid
+    - name: sub_id
+      type: uuid
+
+  primary:
+    name: sub_qr_codes_pk
+    columns:
+      - name: id
+
+  foreign:
+    - name: fk_qr_codes_sub_id
+      columns:
+        - name: sub_id
+      ref_columns:
+        - name: id
+      ref_table: subs
+      on_delete: cascade

@@ -1,0 +1,37 @@
+table:
+  name: sub_model_bindings
+  columns:
+    - name: sub_model_id
+      type: uuid
+    - name: training_id
+      type: uuid
+
+  primary:
+    name: sub_model_bindings_pk
+    columns:
+      - name: training_id
+      - name: sub_model_id
+
+  indexes:
+    - name: sub_model_bindings_ix
+      columns:
+        - name: sub_model_id
+        - name: training_id
+          is_included_column: true
+
+  foreign:
+    - name: sub_model_bindings_sm_fk
+      columns:
+        - name: sub_model_id
+      ref_columns:
+        - name: id
+      ref_table: sub_models
+      on_delete: cascade
+    - name: sub_model_bindings_training_id
+      columns:
+        - name: training_id
+      ref_columns:
+        - name: id
+      ref_table: trainings
+      on_delete: cascade
+

@@ -1,0 +1,57 @@
+table:
+  name: sub_models
+  columns:
+    - name: id
+      type: uuid
+    # this field is not strictly neccessary, but it will help me avoid several joins later
+    - name: instr_user_id
+      type: uuid
+    - name: instructor_id
+      type: uuid
+    - name: name
+      type: text
+    - name: max_entrances
+      type: int
+    # days
+    - name: duration
+      type: int
+      default: 0
+
+    - name: price
+      type: int
+    - name: processing_fee
+      type: int
+    - name: payout_value
+      type: int
+    - name: refund_value
+      type: int
+
+    - name: currency
+      type: text
+    - name: max_active
+      type: int
+    - name: is_free_entrance
+      type: boolean
+    - name: all_trainings_by_def
+      type: boolean
+
+  primary:
+    name: sub_models_pk
+    columns:
+      - name: id
+    
+  foreign:
+    - name: sub_models_instr_id_fk
+      columns:
+        - name: instructor_id
+      ref_columns:
+        - name: id
+      ref_table: instructors
+      on_delete: cascade
+    - name: sub_models_user_id_fk
+      columns:
+        - name: instr_user_id
+      ref_columns:
+        - name: id
+      ref_table: users
+      on_delete: cascade

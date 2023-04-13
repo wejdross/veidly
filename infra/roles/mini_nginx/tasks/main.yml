@@ -1,0 +1,25 @@
+- name: install nginx
+  ansible.builtin.apt:
+    name: nginx
+    update_cache: true
+    state: latest
+
+- name: ensure veidly config is present
+  ansible.builtin.copy:
+    content: "{{ mini_nginx_config }}"
+    dest: "/etc/nginx/sites-enabled/{{ mini_nginx_fqdn }}.conf"
+    owner: root
+    group: root
+    mode: '0644'
+  register: config
+
+- name: restart nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+  when: config is changed
+
+- name: ensure nginx is running
+  ansible.builtin.service:
+    name: nginx
+    state: started

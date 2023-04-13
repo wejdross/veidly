@@ -1,0 +1,5 @@
+gitea.yml
+gitea
+.DS_Store
+.vscode
+node_modules

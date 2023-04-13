@@ -1,0 +1,181 @@
+---
+- name: Basic setup for all servers
+  hosts: git.infra.veidly.com
+  tags:
+    - infra
+    - gitlab
+  tasks:
+    - name: add gitlab rules
+      iptables_raw:
+        name: gitlab rules
+        rules: |
+          -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 4567 -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 9090 -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 3000 -j ACCEPT
+        keep_unmanaged: yes
+        state: present
+    - name: Sets default ACL for joe on '/etc/letsencrypt'
+      tags: prom
+      ansible.posix.acl:
+        path: '/etc/letsencrypt'
+        entity: '{{ item }}'
+        etype: user
+        permissions: rx
+        state: present
+        recursive: true
+      with_items:
+        - prometheus
+        - alertmanager
+  roles:
+    # move it down later
+    - role: iptables_raw
+    - role: ansible-role-docker
+    - role: ansible-alertmanager
+      tags: prom
+      vars:
+        alertmanager_version: '0.24.0'
+        alertmanager_db_dir: /data/alertmanager
+        alertmanager_web_listen_address: 'localhost:9093'
+        alertmanager_web_external_url: "http://{{ansible_fqdn}}:9093/"
+        alertmanager_receivers:
+          - name: 'email'
+            email_configs:
+            - to: 'tech@veidly.com'
+              from: 'tech@veidly.com'
+              smarthost: mail.infra.veidly.com:587
+              auth_username: 'tech@veidly.com'
+              auth_identity: 'tech@veidly.com'
+              auth_password: "jedzie-ksiadz-po-karuzeli-lej-mi-pol"
+              send_resolved: true
+            webhook_configs:
+              - send_resolved: true
+                url: 'https://rc.infra.veidly.com/hooks/62f162c403965b050c33ffac/XZdFRyR9fnND8umW4R3wyXcMQbx52LYdr9Z6SavdKG8wu6Se'
+        alertmanager_route:
+          group_by: ['alertname', 'cluster', 'service']
+          group_wait: 30s
+          group_interval: 30s
+          repeat_interval: 15m
+          receiver: email
+    - role: certbot
+      vars:
+        certbot_create_if_missing: true
+        certbot_test_endpoint: true
+        certbot_admin_email: 'tech@veidly.com'
+        certbot_certs:
+          - domains:
+              - '{{ ansible_fqdn }}'
+    - role: ansible-prometheus
+      tags: prom
+      vars:
+        prometheus_web_external_url: https://"{{ ansible_fqdn }}"
+        prometheus_db_dir: /data/prometheus-master
+        prometheus_web_config:
+          tls_server_config:
+            cert_file: '/etc/letsencrypt/live/{{ ansible_fqdn }}/fullchain.pem'
+            key_file: '/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem'
+          basic_auth_users:
+            # jkdsfnhksjdfjksd2134
+            admin: $2y$10$GDEYvscP0oTs8I1Mmq8GrOtguLXifb60s6DQRuxLcZA7yMbKps4yO
+        prometheus_targets:
+          node:
+            - targets: "{{ groups['all'] | map('extract', hostvars, ['terra_fqdn']) | map('regex_replace', '$', ':9100') | list }}"
+              labels:
+                env: infra
+        prometheus_alertmanager_config:
+          - static_configs:
+            - targets:
+              - 'localhost:9093'
+        prometheus_scrape_configs:
+          - job_name: 'prometheus'
+            metrics_path: '{{ prometheus_metrics_path }}'
+            scheme: https
+            tls_config:
+              insecure_skip_verify: true
+            basic_auth:
+              username: admin
+              password: jkdsfnhksjdfjksd2134
+            static_configs:
+              - targets:
+                  - "{{ ansible_fqdn | default(ansible_host) | default('localhost') }}:9090"
+          - job_name: 'node'
+            scheme: https
+            tls_config:
+              insecure_skip_verify: true
+            basic_auth:
+              username: admin
+              password: jkdsfnhksjdfjksd2134
+            file_sd_configs:
+              - files:
+                  - '{{ prometheus_config_dir }}/file_sd/node.yml'
+                  - '{{ prometheus_config_dir }}/file_sd/node2.yml'
+                refresh_interval: 1s
+          - job_name: 'blackbox'
+            metrics_path: /probe
+            scrape_interval: 5s
+            # params:
+            #   module: [http_2xx]  # Look for a HTTP 200 response.
+            relabel_configs:
+              - source_labels: [__address__]
+                target_label: __param_target
+              - source_labels: [__param_target]
+                target_label: instance
+              - target_label: __address__
+                replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
+            static_configs:
+              - labels:
+                  module: http_2xx
+                targets:
+                  - https://git.infra.veidly.com      # https/gitlab
+                  - https://dev.veidly.com          # https/dev env application
+                  - https://git.infra.veidly.com:3000 # https/grafana
+              - labels:
+                  module: http_3xx
+                targets:
+                  - http://dev.veidly.com          # Check redirect http -> https
+
+    - role: ansible-role-gitlab
+      vars:
+        gitlab_create_self_signed_cert: false
+        gitlab_external_url: 'https://{{ ansible_fqdn }}'
+        gitlab_git_data_dir: /data/gitlab_data
+        gitlab_backup_path: /data/gitlab_backups
+        gitlab_ssl_certificate: '/etc/letsencrypt/live/{{ ansible_fqdn }}/fullchain.pem'
+        gitlab_ssl_certificate_key: '/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem'
+        gitlab_registry_enable: true
+        gitlab_registry_nginx_ssl_certificate: '/etc/letsencrypt/live/{{ ansible_fqdn }}/fullchain.pem'
+        gitlab_registry_nginx_ssl_certificate_key: '/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem'
+    - role: ansible-grafana
+      ### common issues with grafana:
+      ## first provisioning - port already bind - run on server gitlab-ctl reconfigure for some reason it does not respect config fields on first run
+      ## datasources and everything else is being configured by hand, because there are some weird issues when configuring it via ansible
+      vars:
+        grafana_server:
+          protocol: https
+          cert_file: '/etc/letsencrypt/live/{{ ansible_fqdn }}/fullchain.pem'
+          cert_key: '/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem'
+          router_logging: true
+        grafana_security:
+          admin_user: admin
+          admin_password: 'cai6EiphaeWi'
+        grafana_smtp:
+          enabled: true
+          host: mail.infra.veidly.com
+          user: tech@veidly.com
+          password: "jedzie-ksiadz-po-karuzeli-lej-mi-pol"
+          from_address: "notification@{{ ansible_fqdn }}"
+    - role: gitlab_runner
+      vars:
+        gitlab_runner:
+          registration_token: GR1348941hwxNesmeprYYySHsWxsk
+          api_url: https://git.infra.veidly.com/
+          tag_list: "infra, ansible"
+          user: veidly
+          name: "infra-1"
+    - role: ansible-blackbox-exporter
+      tags: prom
+    - role: veidly_backup
+      vars:
+        backup_minute: "15"
+        backup_hour: "3"

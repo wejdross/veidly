@@ -1,0 +1,404 @@
+[
+    {
+        "Name": "acrobatics",
+        "Translations": {
+          "pl": "akrobatyka"
+        }
+    },
+    {
+        "Name": "alpinism",
+        "Translations": {
+          "pl": "alpinizm"
+        }
+    },
+    {
+        "Name": "badminton",
+        "Translations": {
+          "pl": "badminton"
+        }
+    },
+    {
+        "Name": "baseball",
+        "Translations": {
+          "pl": "baseball"
+        }
+    },
+    {
+        "Name": "softball",
+        "Translations": {
+          "pl": "softball"
+        }
+    },
+    {
+        "Name": "biathlon",
+        "Translations": {
+          "pl": "biathlon"
+        }
+    },
+    {
+        "Name": "orienteering",
+        "Translations": {
+          "pl": "biegi na orientację"
+        }
+    },
+    {
+        "Name": "bilard",
+        "Translations": {
+          "pl": "bilard"
+        }
+    },
+    {
+        "Name": "boxing",
+        "Translations": {
+          "pl": "boks"
+        }
+    },
+    {
+        "Name": "bridge",
+        "Translations": {
+          "pl": "brydż"
+        }
+    },
+    {
+        "Name": "curling",
+        "Translations": {
+          "pl": "curling"
+        }
+    },
+    {
+        "Name": "gymnastics",
+        "Translations": {
+          "pl": "gimnastyka"
+        }
+    },
+    {
+        "Name": "golf",
+        "Translations": {
+          "pl": "golf"
+        }
+    },
+    {
+        "Name": "hockey",
+        "Translations": {
+          "pl": "hokej"
+        }
+    },
+    {
+        "Name": "equestrian",
+        "Translations": {
+          "pl": "jeździectwo"
+        }
+    },
+    {
+        "Name": "judo",
+        "Translations": {
+          "pl": "judo"
+        }
+    },
+    {
+        "Name": "ju-jitsu",
+        "Translations": {
+          "pl": "ju-jitsu"
+        }
+    },
+    {
+        "Name": "canoeing",
+        "Translations": {
+          "pl": "kajakarstwo"
+        }
+    },
+    {
+        "Name": "karate",
+        "Translations": {
+          "pl": "karate"
+        }
+    },
+    {
+        "Name": "kick-boxing",
+        "Translations": {
+          "pl": "kick-boxing"
+        }
+    },
+    {
+        "Name": "cycling",
+        "Translations": {
+          "pl": "kolarstwo"
+        }
+    },
+    {
+        "Name": "MTB",
+        "Translations": {
+          "pl": "MTB"
+        }
+    },
+    {
+        "Name": "basketball",
+        "Translations": {
+          "pl": "koszykówka"
+        }
+    },
+    {
+        "Name": "bowling",
+        "Translations": {
+          "pl": "kręgle"
+        }
+    },
+    {
+        "Name": "bodybuilding",
+        "Translations": {
+          "pl": "kulturystyka"
+        }
+    },
+    {
+        "Name": "fitness",
+        "Translations": {
+          "pl": "fitness"
+        }
+    },
+    {
+        "Name": "athletics",
+        "Translations": {
+          "pl": "lekkoatletyka"
+        }
+    },
+    {
+        "Name": "archery",
+        "Translations": {
+          "pl": "łucznictwo"
+        }
+    },
+    {
+        "Name": "ice skating",
+        "Translations": {
+          "pl": "łyżwiarstwo"
+        }
+    },
+    {
+        "Name": "skiing",
+        "Translations": {
+          "pl": "narciarstwo"
+        }
+    },
+    {
+        "Name": "football",
+        "Translations": {
+          "pl": "piłka nożna"
+        }
+    },
+    {
+        "Name": "handball",
+        "Translations": {
+          "pl": "piłka ręczna"
+        }
+    },
+    {
+        "Name": "volleyball",
+        "Translations": {
+          "pl": "siatkówka"
+        }
+    },
+    {
+        "Name": "scuba diving",
+        "Translations": {
+          "pl": "nurkowanie"
+        }
+    },
+    {
+        "Name": "rugby",
+        "Translations": {
+          "pl": "rugby"
+        }
+    },
+    {
+        "Name": "snooker",
+        "Translations": {
+          "pl": "snooker"
+        }
+    },
+    {
+        "Name": "snowboard",
+        "Translations": {
+          "pl": "snowboard"
+        }
+    },
+    {
+        "Name": "motosport",
+        "Translations": {
+          "pl": "sporty motorowe"
+        }
+    },
+    {
+        "Name": "swimming",
+        "Translations": {
+          "pl": "pływanie"
+        }
+    },
+    {
+        "Name": "water polo",
+        "Translations": {
+          "pl": "piłka wodna"
+        }
+    },
+    {
+        "Name": "shooting",
+        "Translations": {
+          "pl": "strzelectwo"
+        }
+    },
+    {
+        "Name": "chess",
+        "Translations": {
+          "pl": "szachy"
+        }
+    },
+    {
+        "Name": "fencing",
+        "Translations": {
+          "pl": "szermierka"
+        }
+    },
+    {
+        "Name": "taekwon-do",
+        "Translations": {
+          "pl": "taekwon-do"
+        }
+    },
+    {
+        "Name": "dancing",
+        "Translations": {
+          "pl": "taniec"
+        }
+    },
+    {
+        "Name": "triathlon",
+        "Translations": {
+          "pl": "triathlon"
+        }
+    },
+    {
+        "Name": "draughts",
+        "Translations": {
+          "pl": "warcaby"
+        }
+    },
+    {
+        "Name": "tenis",
+        "Translations": {
+          "pl": "tenis"
+        }
+    },
+    {
+        "Name": "fishing",
+        "Translations": {
+          "pl": "wędkarstwo"
+        }
+    },
+    {
+        "Name": "hiking",
+        "Translations": {
+          "pl": "wędrówki górskie"
+        }
+    },
+    {
+        "Name": "rowing",
+        "Translations": {
+          "pl": "wioślarstwo"
+        }
+    },
+    {
+        "Name": "skating",
+        "Translations": {
+          "pl": "jazda na rolkach"
+        }
+    },
+    {
+        "Name": "wrestling",
+        "Translations": {
+          "pl": "zapasy"
+        }
+    },
+    {
+        "Name": "sailing",
+        "Translations": {
+          "pl": "żeglarstwo"
+        }
+    },
+    {
+        "Name": "windsurfing",
+        "Translations": {
+          "pl": "windsurfing"
+        }
+    },
+    {
+        "Name": "kitesurfing",
+        "Translations": {
+          "pl": "kitesurfing"
+        }
+    },
+    {
+        "Name": "MMA - Mixed Martial Arts",
+        "Translations": {
+          "pl": "MMA - Mieszane sztuki walki"
+        }
+    },
+    {
+        "Name": "spa&welness",
+        "Translations": {
+          "pl": "spa&welness"
+        }
+    },
+    {
+        "Name": "sauna",
+        "Translations": {
+          "pl": "sauna"
+        }
+    },
+    {
+        "Name": "massage",
+        "Translations": {
+          "pl": "masaż"
+        }
+    },
+    {
+        "Name": "physiotherapy",
+        "Translations": {
+          "pl": "fizjoterapia"
+        }
+    },
+    {
+        "Name": "muay thai",
+        "Translations": {
+          "pl": "muay thai"
+        }
+    },
+    {
+        "Name": "capoeira",
+        "Translations": {
+          "pl": "capoeira"
+        }
+    },
+    {
+        "Name": "crossfit",
+        "Translations": {
+          "pl": "crossfit"
+        }
+    },
+    {
+        "Name": "squash",
+        "Translations": {
+          "pl": "squash"
+        }
+    },
+    {
+        "Name": "esport",
+        "Translations": {
+          "pl": "esport"
+        }
+    },
+    {
+        "Name": "yoga",
+        "Translations": {
+          "pl": "joga"
+        }
+    }
+]

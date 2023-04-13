@@ -1,0 +1,18 @@
+---
+# defaults file for veidly_user
+all_users:
+  - {
+      user: lukasz.widera,
+      groups: sudo,
+      ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG6TPaMOYhOJF7HDsO8U0U77Cmxi/mrPHBrD+SMjeaJ8",
+    }
+  - {
+      user: kamil.zagorski,
+      groups: sudo,
+      ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwkjSTfduMKtc+ugy306wCj2dK9FDpGOsmjIpRUl0YM",
+    }
+  - {
+      user: veidly.backup,
+      groups: sudo,
+      ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILTfRkNeok4Xh/eLjAfrt4V7L10cBXQ5j/kKugTzbsML",
+    }

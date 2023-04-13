@@ -1,0 +1,29 @@
+table:
+  name: instr_vacations
+  columns:
+    - name: id
+      type: uuid
+    - name: instructor_id
+      type: uuid
+    - name: date_start
+      type: timestamp
+    - name: date_end
+      type: timestamp
+  primary:
+    name: instr_vacations_pk
+    columns:
+      - name: id
+  unique:
+    - name: instr_vacations_unique
+      columns:
+        - name: date_start
+        - name: date_end
+        - name: instructor_id
+  foreign:
+    - name: instr_vacations_instructors_fk
+      columns:
+        - name: instructor_id
+      ref_table: instructors
+      ref_columns:
+        - name: id
+      on_delete: cascade

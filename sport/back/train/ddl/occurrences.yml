@@ -1,0 +1,34 @@
+table:
+  name: occurrences
+  columns:
+    - name: id
+      type: uuid
+    - name: training_id
+      type: uuid
+    - name: date_start
+      type: timestamp
+    - name: date_end
+      type: timestamp
+    - name: repeat_days
+      type: int
+    - name: color
+      type: text
+    - name: remarks
+      type: text
+  primary:
+    name: occ_pk
+    columns:
+      - name: id
+  foreign:
+    - name: occ_training_id_training
+      columns:
+        - name: training_id
+      ref_table: trainings
+      ref_columns:
+        - name: id
+      on_delete: cascade
+  indexes:
+    - name: occ_training_id_hash
+      using: hash
+      columns:
+        - name: training_id

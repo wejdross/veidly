@@ -1,0 +1,48 @@
+table:
+  name: reviews
+  columns:
+    - name: id
+      type: uuid
+    - name: access_token
+      type: text
+    - name: created_on
+      type: timestamp
+      
+    - name: training_id
+      type: uuid
+      nullable: true
+    - name: rsv_id
+      type: uuid
+    - name: user_id
+      type: uuid
+      nullable: true
+    - name: email
+      type: text
+    - name: user_data
+      type: jsonb
+
+    - name: mark
+      type: int
+    - name: review
+      type: text
+
+  primary:
+    name: reviews_pk
+    columns:
+      - name: id
+      
+  foreign:
+    
+    - name: reviews_trainings_fk
+      columns:
+        - name: training_id
+      ref_columns:
+        - name: id
+      ref_table: trainings
+      on_delete: set null
+
+  indexes:
+    - name: reviews_access_token_ix
+      using: hash
+      columns:
+        - name: access_token

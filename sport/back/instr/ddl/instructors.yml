@@ -1,0 +1,85 @@
+table:
+  name: instructors
+  columns:
+    
+    - name: id
+      type: uuid
+    - name: user_id
+      type: uuid
+    
+    - name: tags
+      type: text[]
+      nullable: true
+    - name: year_exp
+      type: int
+      default: 0
+    - name: known_langs
+      type: text[]
+      nullable: true
+
+    - name: bg_img_path
+      type: text
+      default: "''"
+    - name: extra_img_paths
+      type: text[]
+      nullable: true
+    - name: profile_sections
+      type: jsonb
+      default: "'[]'"
+
+    - name: created_on
+      type: timestamp
+
+    - name: card_ref_id
+      type: text
+      default: "''"
+    - name: card_brand
+      type: text
+      default: "''"
+    - name: card_holder_name
+      type: text
+      default: "''"
+    - name: card_summary
+      type: text
+      default: "''"
+      
+    # refunds this guy did
+    - name: refunds
+      type: jsonb
+      default: "'{}'"
+    # number of times we will cut this guys pay because of refunds
+    - name: queued_payout_cuts
+      type: int
+      default: 0
+
+    - name: disabled
+      type: boolean
+      default: false
+
+    - name: invoice_lines
+      type: text[]
+      nullable: true
+
+  # ensures relationship between users and trainers
+  foreign:
+    - name: instructors_users_fk
+      columns:
+        - name: user_id
+      ref_table: users
+      ref_columns:
+        - name: id
+      # first manually remove instructor, then user. 
+      # i cowardly refuse to remove instructor in cascade
+      #on_delete: cascade
+
+  # makes sure that single user can be only 1 trainer
+  unique:
+    - name: instructors_user_id_unique
+      columns:
+        - name: user_id
+
+  # primary key
+  primary:
+    name: instructors_pk
+    columns:
+      - name: id

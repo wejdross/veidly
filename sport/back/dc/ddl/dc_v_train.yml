@@ -1,0 +1,37 @@
+table:
+  name: dc_v_train
+  columns:
+    - name: training_id
+      type: uuid
+    - name: dc_id
+      type: uuid
+
+  primary:
+    name: dv_v_train_pk
+    columns:
+      - name: training_id
+      - name: dc_id
+
+  indexes:
+    - name: dc_v_train_ix
+      columns:
+        - name: dc_id
+      using: hash
+
+  foreign:
+
+    - name: dc_v_train_fk_training_id
+      columns:
+        - name: training_id
+      ref_columns:
+        - name: id
+      ref_table: trainings
+      on_delete: cascade
+
+    - name: dc_v_train_fk_dc_id
+      columns:
+        - name: dc_id
+      ref_columns:
+        - name: id
+      ref_table: dc
+      on_delete: cascade

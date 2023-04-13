@@ -1,0 +1,41 @@
+table:
+  name: dc
+  columns:
+    - name: id
+      type: uuid
+      
+    - name: instr_id
+      type: uuid
+    - name: name
+      type: text
+
+    - name: redeemed_quantity
+      type: int
+    - name: quantity
+      type: int
+    - name: valid_start
+      type: timestamp
+    - name: valid_end
+      type: timestamp
+    - name: discount
+      type: int
+  
+  primary:
+    name: dc_pk
+    columns:
+      - name: id
+
+  unique:
+    - name: dv_uq_name
+      columns:
+        - name: name
+        - name: instr_id
+
+  foreign:
+    - name: dc_instr_fk
+      columns:
+        - name: instr_id
+      ref_columns:
+        - name: id
+      ref_table: instructors
+      on_delete: cascade

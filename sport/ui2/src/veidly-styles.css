@@ -1,0 +1,103 @@
+:root {
+  --mulwicolor-blueDark: #0D4A6D;
+  --mulwicolor-blueLight: #0884C1;
+  --mulwicolor-greenDark: #24C084;
+  --mulwicolor-greenLight: #5CD3AC;
+  --mulwicolor-whiteBackground: #FAFAFA;
+  --mulwicolor-whiteSurface: #F9F9F9;
+  --mulwicolor-redError: #B00020;
+  --mulwicolor-pinkAction: #FAB5A4;
+  --mulwicolor-pinkDark: #BB8779;
+  --mulwicolor-h1h6Typography: #424242;
+  --mulwicolor-subtitleTypography: #606060;
+  --mulwicolor-bodyTypography: #888888;
+  --mulwicolor-lightGreyAddedByLukasz: #e4e4e4;
+  --mulwicolor-black: #0D4A6D;
+  --mulwicolor-blackText: #111111;
+  --mulwicolor-priceColor: #4FCC9C;
+}
+
+
+.typographyHeading {
+  color: var(--mulwicolor-darkblue);
+  font-weight: 300px;
+  margin-bottom: 20px;
+}
+
+.typographyBodyWhite {
+  color: var(--mulwicolor-whiteSurface);
+}
+
+.veidlyDataSheet {
+  background-color: white;
+  box-shadow: 10px 5px 15px #606060;
+  border-style: solid;
+  border-color: #606060;
+  border-width: 1px;
+  margin-top: 100px;
+  padding-bottom: 80px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 20px;
+  max-width: 600px;
+  min-width: 500px;
+  width: auto;
+  margin-bottom: 15px;
+}
+
+.tagLocationNavbar {
+  background-color: var(--mulwicolor-whiteBackground);
+  width: 200px!important;
+  border-radius: 5px;
+}
+
+.tagLocation {
+  background-color: var(--mulwicolor-whiteBackground);
+  width: 250px!important;
+  border-radius: 5px;
+}
+
+.cardWithBgHeader {
+  font-weight: 400;
+  margin-top: 20px !important;
+}
+
+.cardWithBgSubHeader {
+  font-weight: 600 !important;
+  margin-top: 20px !important;
+  width: 100%;
+  margin-bottom: 30px !important;
+}
+
+.cardWithBgDivider {
+  width: 100%;
+  margin-top: 100;
+  margin-bottom: 20;
+}
+
+.typographyBlackTextRegularsize {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+/*
+MUI lg > 1200px
+*/
+@media screen and (min-width: 1200px) {
+  .tag-location-navbar {
+    width: 200px;
+  }
+}
+
+/* 
+ MUI sx < 600px
+*/
+@media screen and (max-width: 600px) {
+  .veidlyDataSheet {
+    max-width: 70% !important;
+    min-width: 200px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 20px;
+  }
+}

@@ -1,0 +1,29 @@
+table:
+  name: secondary_occs
+  columns:
+    - name: id
+      type: uuid
+    - name: occ_id
+      type: uuid
+    - name: training_id
+      type: uuid
+    - name: offset_start
+      type: int
+    - name: offset_end
+      type: int
+    - name: color
+      type: text
+    - name: remarks
+      type: text
+  primary:
+    name: secondary_occs_pk
+    columns:
+      - name: id
+  foreign:
+    - name: fk_secondary_occ_occ
+      columns:
+        - name: occ_id
+      ref_table: occurrences
+      ref_columns:
+        - name: id
+      on_delete: cascade

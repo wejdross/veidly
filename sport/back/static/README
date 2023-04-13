@@ -1,0 +1,4 @@
+this module may be used to serve static files (ex. images) via the api
+if nginx dies or is not available (for example in dev env)
+
+

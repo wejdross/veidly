@@ -1,0 +1,6 @@
+# handlers file for veidly_basic_network
+---
+- name: systemd-hostnamed
+  service:
+    state: restarted
+    name: systemd-hostnamed

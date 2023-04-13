@@ -1,0 +1,88 @@
+- name: Provision cassandra on dev cluster
+  hosts: cass-dev
+  tags:
+    - cass-dev
+    - dev
+  vars:
+    ip: "{{ ansible_host }}"
+    jks_pass: wsk7lPfQnSS5ZcCVYHJwmFkTzSBZvqYEn63MyPNQaHULReBHvOmQ7AbocGWbQq/l
+    cass_pass: "sCIqvhQmvyGYoCR96xul4nKAjH/np7KWhNRSdzdIbLCuVf66qHHrbj3MVbbWYMAG"
+    cass_replication: "{'class':'NetworkTopologyStrategy', 'fsn1' : 2}"
+    cassandra_configuration:
+      server_encryption_options:
+        internode_encryption: all
+        keystore: /etc/cassandra/{{ ansible_host }}.keystore
+        truststore: /etc/cassandra/{{ ansible_host }}.truststore
+        protocol: TLS
+        cipher_suites: [TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384]
+        keystore_password: "{{ jks_pass }}"
+        truststore_password: "{{ jks_pass }}"
+      client_encryption_options:
+        enabled: true
+        optional: false
+        keystore: /etc/cassandra/{{ ansible_host }}.keystore
+        truststore: /etc/cassandra/{{ ansible_host }}.truststore
+        protocol: TLS
+        keystore_password: "{{ jks_pass }}"
+        truststore_password: "{{ jks_pass }}"
+        cipher_suites: [TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384]
+      authenticator: PasswordAuthenticator
+      cluster_name: veidly-cassandra-cluster
+      commitlog_directory: /data/cassandra/commitlog
+      commitlog_sync: periodic
+      commitlog_sync_period_in_ms: 10000
+      data_file_directories:
+        - /data/cassandra/data
+      endpoint_snitch: GossipingPropertyFileSnitch
+      hints_directory: "/data/cassandra/hints"
+      listen_address: "{{ ansible_host }}"
+      # https://cassandra.apache.org/doc/latest/getting_started/production.html#tokens
+      num_tokens: 8
+      partitioner: org.apache.cassandra.dht.Murmur3Partitioner
+      saved_caches_directory: /data/cassandra/saved_caches
+      seed_provider:
+        - class_name: "org.apache.cassandra.locator.SimpleSeedProvider"
+          parameters:
+            - seeds: "{% for host in groups['cass-dev'] %}{{ ansible_host }}{% if not loop.last %},{% endif %}{% endfor %}"
+      start_native_transport: true
+    cassandra_configure_apache_repo: true
+    cassandra_directories:
+      root:
+        group: root
+        mode: "0755"
+        owner: root
+        paths:
+          - /data
+      data:
+        paths:
+          - /data/cassandra
+          - /data/cassandra/commitlog
+          - /data/cassandra/data
+          - /data/cassandra/hints
+          - /data/cassandra/saved_caches
+    cassandra_regex_replacements:
+      - path: cassandra-env.sh
+        line: 'MAX_HEAP_SIZE="{{ cassandra_max_heapsize_mb }}M"'
+        regexp: '^#MAX_HEAP_SIZE="4G"'
+      - path: cassandra-env.sh
+        line: 'HEAP_NEWSIZE="{{ cassandra_heap_new_size_mb }}M"'
+        regexp: '^#HEAP_NEWSIZE="800M"'
+    cassandra_repo_apache_release: 311x
+  roles:
+    - role: cassandra
+    - role: iptables_raw
+  tasks:
+    - name: add gitlab rules
+      iptables_raw:
+        name: gitlab rules
+        rules: |
+          -A INPUT -p tcp -m tcp --dport 7001 -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 9042 -j ACCEPT
+        keep_unmanaged: yes
+        state: present
+  post_tasks:
+    - import_role:
+        name: veidly_backup
+      vars:
+        backup_minute: "15"
+        backup_hour: "2"

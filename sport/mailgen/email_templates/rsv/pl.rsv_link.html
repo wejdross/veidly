@@ -1,0 +1,221 @@
+
+
+{{ define "content" }}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; font-weight: 300; margin: 0 auto; padding: 0; height: 100%; width: 100%;">
+<head>
+	<meta charset="utf-8"> <!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+	<title>Załóż konto</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  	<!-- CSS Reset -->
+    <style type="text/css">
+.mobile-link--footer a,
+a[x-apple-data-detectors] {
+  color: inherit !important;
+  text-decoration: underline !important;
+}
+</style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+.button-td:hover,
+.button-a:hover {
+  background: #0D4A6D !important;
+  border-color: #0D4A6D !important;
+}
+</style>
+
+</head>
+<body width="100%" bgcolor="#222222" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; font-weight: 300; Margin: 0; margin: 0 auto; padding: 0; height: 100%; width: 100%;" dir="ltr">
+    <center style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; width: 100%; background: #222222;">
+
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; max-width: 600px; margin: auto;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+
+            <!-- Email Header : BEGIN -->
+            <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; max-width: 600px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; Margin: 0 auto;">
+				<tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+					<td class="branding" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #fff; font-size: 25px; font-family: 'Nunito Sans', sans-serif; padding: 30px 0; text-align: center; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" align="center">
+                        <a href="https://veidly.com" target="_blank" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; color: #fff; text-decoration: none;">
+                            
+                                
+                                    <img src="https://veidly.com/logo-light.png" class="email-logo" alt style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; -ms-interpolation-mode: bicubic; max-height: 50px;">
+                                    
+                            
+                        </a>
+					</td>
+				</tr>
+            </table>
+            <!-- Email Header : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; max-width: 600px; border-radius: 30px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; Margin: 0 auto;">
+
+                <!-- Hero Image, Flush : BEGIN -->
+                
+                    <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                        <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+                            <h3 style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; font-size: 26px; padding: 40px 10px 0; text-align: center; font-weight: 500;">
+                                Cześć {{.Name}},
+                            </h3>
+                        </td>
+                    </tr>
+                
+                <!-- Hero Image, Flush : END -->
+
+                <!-- 1 Column Text + Button : BEGIN -->
+                <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                    <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+                        <table cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; Margin: 0 auto;">
+                        	<tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+	                            <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-align: center; padding: 10px 40px 40px 40px; font-family: 'Nunito Sans', sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" align="center">
+	                                
+                                                                                    <p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">Dziękujemy za zrobienie rezerwacji na trening:</p>
+                                                                                    <p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">{{.Training}}</p>
+                                                                                    <p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">Na dzień:</p>
+                                                                                    <p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">{{.RsvDate}}</p>
+                                                                            
+
+                                    <!-- Dictionary -->
+                                    
+
+                                    <!-- Table -->
+                                    
+                                        
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                    <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                        <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; Margin: 0 auto;">
+                                <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                     <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background: #f8f8f8; text-align: center; padding: 20px 40px 40px 40px; font-family: 'Nunito Sans', sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" align="center">
+                                        <br style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                        <!-- Action -->
+                                                                                            <p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">Kliknij poniżej by zobaczyć status swojej rezerwacji:</p>
+                                                <br style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                                <!-- Button : Begin -->
+                                                <!--[if mso]>
+                                                    <center>
+                                                                                                                            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{.RsvUrl}}" style="height: 45px; v-text-anchor: middle; width: 200px;" arcsize="10%" stroke="f" fillcolor="#24C084">
+                                                                    <w:anchorlock/>
+                                                                    <center style="color: #ffffff; font-family: 'Nunito Sans', sans-serif;; font-size: 13px; font-weight: bold;">
+                                                                        Twoja rezerwacja
+                                                                    </center>
+                                                                </v:roundrect>
+                                                                                                                </center>
+                                                <![endif]-->
+                                                    <table cellspacing="0" cellpadding="0" border="0" align="center" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; border-spacing: 10px; margin: auto; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; Margin: 0 auto;">
+                                                        <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                                                                                                            <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; border-radius: 30px; text-align: center; transition: all 100ms ease-in; background-color: #24C084; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" class="button-td" bgcolor="#24C084" align="center">
+                                                                  <a href="{{.RsvUrl}}" target="_blank" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #24C084; border-radius: 30px; display: block; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: bold; line-height: 1.1; padding: 15px; text-align: center; text-decoration: none; transition: all 100ms ease-in; background-color: #24C084; border-color: #24C084;" class="button-a">
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; color: #ffffff;">Twoja rezerwacja</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                  </a>
+                                                                </td>
+                                                                                                                    </tr>
+                                                    </table>
+                                                <br style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                                <!-- Button : END -->
+                                                                                            <p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">Sprawdź status swojej rezerwacji:</p>
+                                                <br style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                                <!-- Button : Begin -->
+                                                <!--[if mso]>
+                                                    <center>
+                                                                                                                            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{.PaymentUrl}}" style="height: 45px; v-text-anchor: middle; width: 200px;" arcsize="10%" stroke="f" fillcolor="#24C084">
+                                                                    <w:anchorlock/>
+                                                                    <center style="color: #ffffff; font-family: 'Nunito Sans', sans-serif;; font-size: 13px; font-weight: bold;">
+                                                                        Sprawdź rezerwację
+                                                                    </center>
+                                                                </v:roundrect>
+                                                                                                                </center>
+                                                <![endif]-->
+                                                    <table cellspacing="0" cellpadding="0" border="0" align="center" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; border-spacing: 10px; margin: auto; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; Margin: 0 auto;">
+                                                        <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                                                                                                            <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; border-radius: 30px; text-align: center; transition: all 100ms ease-in; background-color: #24C084; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" class="button-td" bgcolor="#24C084" align="center">
+                                                                  <a href="{{.PaymentUrl}}" target="_blank" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #24C084; border-radius: 30px; display: block; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: bold; line-height: 1.1; padding: 15px; text-align: center; text-decoration: none; transition: all 100ms ease-in; background-color: #24C084; border-color: #24C084;" class="button-a">
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; color: #ffffff;">Sprawdź rezerwację</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                  </a>
+                                                                </td>
+                                                                                                                    </tr>
+                                                    </table>
+                                                <br style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                                <!-- Button : END -->
+                                                                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                
+                <!-- 1 Column Text + Button : END -->
+
+                <!-- 2 Even Columns : BEGIN -->
+                <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                    <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+                        <table cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; Margin: 0 auto;">
+                        	<tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+	                            <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-align: center; padding: 30px 40px 20px 40px; font-family: 'Nunito Sans', sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" align="center">
+	                               
+                                                                                    <p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">W razie jakichkolwiek problemów, prosimy skontaktowac się z supportem pod adresem: </p><h3 style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;"><a href="mailto:support@veidly.com" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; text-decoration: none; color: #24C084;">support@veidly.com</a></h3><p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;"></p>
+                                                                                    <p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">lub napisz do nas na czacie: </p><h3 style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;"><a href="https://m.me/veidly" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; text-decoration: none; color: #24C084;"><svg style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; color: rgb(36, 192, 132); width: 15px; --darkreader-inline-color: #85c9f0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-darkreader-inline-color=""><path d="M256.55 8C116.52 8 8 110.34 8 248.57c0 72.3 29.71 134.78 78.07 177.94 8.35 7.51 6.63 11.86 8.05 58.23A19.92 19.92 0 0 0 122 502.31c52.91-23.3 53.59-25.14 62.56-22.7C337.85 521.8 504 423.7 504 248.57 504 110.34 396.59 8 256.55 8zm149.24 185.13l-73 115.57a37.37 37.37 0 0 1-53.91 9.93l-58.08-43.47a15 15 0 0 0-18 0l-78.37 59.44c-10.46 7.93-24.16-4.6-17.11-15.67l73-115.57a37.36 37.36 0 0 1 53.91-9.93l58.06 43.46a15 15 0 0 0 18 0l78.41-59.38c10.44-7.98 24.14 4.54 17.09 15.62z" fill="#24c084" data-darkreader-inline-fill="" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; --darkreader-inline-fill: #0a3b57;"/></svg>Messenger</a></h3><p style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;"></p>
+                                                                            
+                                </td>
+                            </tr>
+                            
+                              <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+  	                            <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-align: center; padding: 0 40px 40px 40px; font-family: 'Nunito Sans', sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" align="center">
+  	                                Do zobaczenie na platformie,
+                                      <br style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                                      <a href="https://veidly.com" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; text-decoration: none; color: #24C084;">Veidly.com</a>
+                                  </td>
+                              </tr>
+                            
+                        </table>
+                    </td>
+                </tr>
+                <!-- Two Even Columns : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            
+
+            <!-- Email Footer : BEGIN -->
+            <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; max-width: 680px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; Margin: 0 auto;">
+                <tr style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif;">
+                    <td class="copyright" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; padding: 40px 10px; width: 100%; font-size: 12px; font-family: 'Nunito Sans', sans-serif; mso-height-rule: exactly; line-height: 18px; text-align: center; color: #888888; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%" align="center">
+                        &copy; 2023 <a href="https://veidly.com" target="_blank" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; color: #888888; text-decoration: underline;"><a href="https://veidly.com" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Nunito Sans', sans-serif; color: #888888; text-decoration: underline;">Veidly.com</a></a>. All rights reserved.
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+
+<!-- Support for Gmail Go-To Actions -->
+
+
+</body>
+</html>
+{{ end }}

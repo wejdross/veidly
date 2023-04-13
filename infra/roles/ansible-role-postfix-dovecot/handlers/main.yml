@@ -1,0 +1,20 @@
+---
+- name: restart dovecot
+  service:
+    name: dovecot
+    state: restarted
+
+- name: restart postfix
+  service:
+    name: postfix
+    state: restarted
+
+- name: restart postgrey
+  service:
+    name: postgrey
+    state: restarted
+
+- name: restart_opendkim
+  service:
+    name: opendkim
+    state: restarted

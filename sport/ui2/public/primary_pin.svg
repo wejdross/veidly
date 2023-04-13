@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="22mm"
+   height="44mm"
+   viewBox="0 0 22 44"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="logo_mini_transparent_background.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="px"
+     showgrid="false"
+     showborder="true"
+     inkscape:zoom="2.5620932"
+     inkscape:cx="68.108375"
+     inkscape:cy="121.77543"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="1472"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <style
+       id="style855">.cls-1{fill:#111;}</style>
+  </defs>
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       class="cls-1"
+       d="M 0,0.05979878 C 1.628473,3.3128568 2.5074021,7.7080728 1.0306226,5.2204402 2.5074021,7.7080728 7.205435,12.390324 6.5495843,10.715955 7.2098967,12.390324 11.149464,40.74096 11.176233,44 c -0.02677,-3.25904 3.60941,-31.615656 4.26526,-33.284045 -0.65585,1.674369 4.077875,-3.1633593 5.559115,-5.6808911 C 19.519368,7.5466159 20.371527,3.2590378 22,0 c -1.628473,3.2590378 -8.949908,7.4688772 -8.592983,4.9393855 -0.356925,2.5294917 -1.164469,8.0250075 -0.945852,6.4582755 -0.214155,1.572712 0.28554,4.771949 0.588927,3.76135 -0.847699,1.674368 -1.396471,2.338134 -1.922938,2.332156 -0.580003,-0.006 -1.142161,-0.681707 -1.9809361,-2.379995 0.2766173,1.022559 0.7896978,-2.140799 0.6067736,-3.713511 C 9.9359157,12.970373 9.0123708,7.4688772 8.6643683,4.9393855 9.0123708,7.4688772 1.6329345,3.3068767 0,0.05979878 Z"
+       id="path859"
+       style="stroke-width:0.0516525;fill:#B00020"
+       inkscape:export-xdpi="25.4"
+       inkscape:export-ydpi="25.4" />
+  </g>
+</svg>

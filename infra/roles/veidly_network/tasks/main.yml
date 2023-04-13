@@ -1,0 +1,35 @@
+---
+# tasks file for veidly_basic_network
+- name: Get stats of a resolv.conf file
+  ansible.builtin.stat:
+    path: "{{ path }}"
+  register: state
+- name: Delete resolv.conf if it's link
+  ansible.builtin.file:
+    path: "{{ path }}"
+    state: absent
+  when: state.stat.islnk
+- name: Create own resolv.conf
+  ansible.builtin.template:
+    src: resolv.conf
+    dest: "{{ path }}"
+    owner: root
+    group: root
+    mode: '0644'
+- name: Create own resolv.conf
+  ansible.builtin.copy:
+    src: nsswitch.conf
+    dest: /etc/nsswitch.conf
+    owner: root
+    group: root
+    mode: '0644'
+- name: manage /etc/hosts
+  ansible.builtin.template:
+    src: hosts.j2
+    dest: "/etc/hosts"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:  systemd-hostnamed
+- name: set correct timezone
+  ansible.builtin.shell: timedatectl set-timezone Europe/Warsaw

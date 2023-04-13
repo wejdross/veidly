@@ -1,0 +1,93 @@
+---
+- name: Basic setup for all servers
+  hosts: all
+  pre_tasks:
+    - name: install basic packages
+      apt:
+        state: latest
+        update_cache: yes
+        force: yes
+        pkg:
+          - vim
+          - python3
+          - strace
+          - python3-pip
+          - iotop
+          - htop
+          - net-tools
+          - ncdu
+          - lvm2
+          - python-passlib
+    - name: remove superfluous packages
+      apt:
+        state: absent
+        pkg:
+          - python2
+    - name: symlink /usr/bin/python -> /usr/bin/python3
+      raw: |
+        if [ -f /usr/bin/python3 ] && [ ! -f /usr/bin/python ]; then
+          ln --symbolic /usr/bin/python3 /usr/bin/python; 
+        fi
+      become: true
+    - name: Make a copy of security repos
+      shell: cat /etc/apt/sources.list | grep secu >/etc/apt/security.sources.list
+    - name: Update cache
+      apt: update_cache=yes
+    - name: Install security updates
+      shell: apt-get upgrade -oDir::Etc::SourceList=/etc/apt/security.sources.list --force-yes -y
+  tasks:
+    - name: add basic rules
+      iptables_raw:
+        name: basic_rules
+        rules: |
+          -P INPUT DROP
+          -A INPUT -i lo -j ACCEPT
+          -A INPUT -p icmp  --icmp-type echo-request -j ACCEPT
+          -A INPUT -p icmp  --icmp-type echo-reply  -j ACCEPT
+          -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 22 -m state --state NEW -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 80 -m state --state NEW -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 443 -m state --state NEW -j ACCEPT
+          -A INPUT -p tcp -m tcp --dport 9100 -m state --state NEW -j ACCEPT
+        keep_unmanaged: yes
+        state: present
+  roles:
+    - role: veidly_lvm
+    - role: veidly_user
+    - role: veidly_network
+    - role: iptables_raw
+    - role: certbot
+      vars:
+        certbot_create_if_missing: true
+        certbot_test_endpoint: false
+        certbot_admin_email: "tech@veidly.com"
+        certbot_certs:
+          - domains:
+              - "{{ terra_fqdn }}"
+  post_tasks:
+    - import_role: 
+        name: node_exporter
+      vars:
+        node_exporter_textfile_dir: /data/node_exporter
+        node_exporter_tls_server_config:
+          cert_file: "/etc/letsencrypt/live/{{ ansible_fqdn }}/fullchain.pem"
+          key_file: "/etc/letsencrypt/live/{{ ansible_fqdn }}/privkey.pem"
+        node_exporter_basic_auth_users:
+          admin: $2y$10$GDEYvscP0oTs8I1Mmq8GrOtguLXifb60s6DQRuxLcZA7yMbKps4yO
+    - name: Sets default ACL for node-exp on '/etc/letsencrypt'
+      ansible.posix.acl:
+        path: '/etc/letsencrypt'
+        entity: '{{ item }}'
+        etype: user
+        permissions: rx
+        state: present
+        recursive: true
+      with_items:
+        - node-exp
+- import_playbook: non_terraform/mail.infra.veidly.com.yaml
+- import_playbook: vms/gitlab.yaml
+- import_playbook: vms/rc.yaml
+- import_playbook: vms/cass-dev.yaml
+- import_playbook: vms/cass-prod.yaml
+- import_playbook: vms/app-prod.yaml
+- import_playbook: vms/app-dev.yaml

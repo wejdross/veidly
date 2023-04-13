@@ -1,0 +1,63 @@
+---
+- name: create partition
+  parted:
+    device: /dev/sdb
+    number: 1
+    flags: [lvm]
+    state: present
+    resize: yes
+
+- name: resize pv to catch all changes
+  shell: pvresize /dev/sdb1
+  ignore_errors: true
+
+- name: creating volume group
+  lvg:
+    vg: data-vg
+    pvs: /dev/sdb1
+
+- name: creating logical volume
+  lvol:
+    vg: data-vg
+    lv: data-lv
+    size: +100%FREE
+    force: yes
+
+- name: Create LUKS container with a passphrase
+  community.crypto.luks_device:
+    device: '/dev/data-vg/data-lv'
+    state: 'present'
+    name: data-luks
+    passphrase: 'yohcoz3weevoo0of9anieN5We'
+
+- name: Create LUKS container with a passphrase
+  community.crypto.luks_device:
+    device: '/dev/data-vg/data-lv'
+    state: 'opened'
+    name: data-luks
+    passphrase: 'yohcoz3weevoo0of9anieN5We'
+
+- name: resize pv to catch all changes
+  shell: echo 'yohcoz3weevoo0of9anieN5We' | cryptsetup resize data-luks -
+
+- name: resizefs
+  shell: resize2fs /dev/mapper/data-luks
+  ignore_errors: true
+
+- name: Create directory data if does not exist
+  file:
+    path: /data
+    state: directory
+    mode: '0755'
+
+- name: format the ext4 filesystem
+  filesystem:
+    fstype: ext4
+    dev: /dev/mapper/data-luks
+
+- name: mount the lv on /data
+  mount:
+    path: /data
+    src: /dev/mapper/data-luks
+    fstype: ext4
+    state: mounted

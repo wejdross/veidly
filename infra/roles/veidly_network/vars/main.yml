@@ -1,0 +1,5 @@
+---
+# vars file for veidly_basic_network
+path: /etc/resolv.conf
+ns1: 1.1.1.1
+ns2: 1.0.0.1

@@ -1,0 +1,155 @@
+table:
+  name: reservations
+  columns:
+    
+    - name: id
+      type: uuid
+    # copy of instructor_id field from jsonb used for indexing
+    - name: instructor_id
+      type: uuid
+      nullable: true
+
+    - name: training_id
+      type: uuid
+      nullable: true
+    # immutable training object from which this reservation has been created
+    - name: training
+      type: jsonb
+    # cached occurrence for training
+    - name: occ
+      type: jsonb
+      default: "'{}'"
+    - name: groups
+      type: jsonb
+      default: "'[]'"
+  
+    - name: user_id
+      type: uuid
+      nullable: true
+    - name: user_data
+      type: jsonb
+    
+    - name: date_start
+      type: timestamp
+    - name: date_end
+      type: timestamp
+
+    - name: is_confirmed
+      type: boolean
+    - name: instructor_decision
+      type: instructor_decision
+      default: "'unset'"
+    - name: state
+      type: adyen_sm_state
+      default: "'link'"
+    - name: sm_timeout
+      type: timestamp 
+    - name: created_on
+      type: timestamp
+
+    - name: link_id
+      type: text
+    - name: link_url
+      type: text
+    
+    - name: sm_retries
+      type: int
+    - name: is_active
+      type: boolean
+      default: false
+
+    - name: order_id
+      type: text
+
+    - name: sm_cache
+      type: jsonb
+
+    # this is value added on top of training_price
+    - name: processing_fee
+      type: int
+      default: 0
+    # this is money for us
+    - name: split_income_fee
+      type: int
+    # this is money for instructor
+    - name: split_payout
+      type: int
+    # this is refund value if requested by user
+    - name: refund_amount
+      type: int
+
+    - name: access_token
+      type: text
+      default: "''"
+      
+    - name: qr_confirmed
+      type: boolean
+      default: false
+
+    - name: user_contact_data
+      type: jsonb
+      default: "'{}'"
+
+    - name: dc
+      type: jsonb
+      nullable: true
+    - name: dc_rollback
+      type: boolean
+      default: false
+
+    - name: use_user_acc
+      type: boolean
+      default: false
+
+  primary:
+    name: reservations_pk
+    columns:
+      - name: id
+    
+  unique:
+    # - name: reservations_order_id_unique
+    #   columns:
+    #     - name: order_id
+
+  indexes:
+    - name: reservations_ix_user_id
+      columns:
+        - name: user_id
+    - name: reservations_ix_instructor_id
+      columns:
+        - name: instructor_id
+    - name: reservations_ix_state
+      columns:
+        - name: state
+      using: hash
+    - name: reservations_ix_is_confirmed
+      columns:
+        - name: is_confirmed
+      using: hash
+
+  foreign:
+    
+    - name: rsv_trainings_fk
+      columns:
+        - name: training_id
+      ref_columns:
+        - name: id
+      ref_table: trainings
+      on_delete: set null
+
+    - name: rsv_instructors_fk
+      columns:
+        - name: instructor_id
+      ref_columns:
+        - name: id
+      ref_table: instructors
+      on_delete: set null
+
+    - name: rsv_users_fk
+      columns:
+        - name: user_id
+      ref_columns:
+        - name: id
+      ref_table: users
+      on_delete: set null
+

@@ -1,0 +1,21 @@
+---
+# tasks file for iptables-raw
+
+- name: iptables-raw | install iptables services
+  become: true
+  apt:
+    name:
+      - iptables
+      - iptables-persistent
+    state: present
+    update_cache: yes
+
+- name: Ensure ufw is disabled
+  ufw: state=disabled
+
+- name: iptables-raw | enable iptables
+  become: true
+  service:
+    name: netfilter-persistent
+    state: started
+    enabled: true

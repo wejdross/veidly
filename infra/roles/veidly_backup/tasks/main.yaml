@@ -1,0 +1,75 @@
+---
+- block:
+  - name: make sure .ssh created on "{{ backup_host }}"
+    ansible.builtin.file:
+      path: "/home/{{ backup_user }}/.ssh"
+      state: directory
+      owner: "{{ backup_user }}"
+      group: "{{ backup_user }}"
+      mode: '0700'
+  - name: make sure .ssh/id created on "{{ backup_host }}"
+    ansible.builtin.copy:
+        dest: "/home/{{ backup_user }}/.ssh/id_ed25519"
+        owner: "{{ backup_user }}"
+        group: "{{ backup_user }}"
+        mode: '0600'
+        content: |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+          QyNTUxOQAAACC030ZDXqJOF4f3i4wH67eFey9dHAV0OY/5CroE827DCwAAAJDMUCpnzFAq
+          ZwAAAAtzc2gtZWQyNTUxOQAAACC030ZDXqJOF4f3i4wH67eFey9dHAV0OY/5CroE827DCw
+          AAAECr8vZvUbSfnJFE0DkC7SydA2RXip+CU0vRm6Jkti4uHrTfRkNeok4Xh/eLjAfrt4V7
+          L10cBXQ5j/kKugTzbsMLAAAACmFub25AYXJjaDEBAgM=
+          -----END OPENSSH PRIVATE KEY-----
+  - name: Sets default ACL for "{{vedily_user}}" on '/data'
+    ansible.posix.acl:
+      path: "{{ backup_local_directory }}"
+      entity: "{{ backup_user }}"
+      etype: user
+      permissions: rwx
+      state: present
+      recursive: true
+### cleanup
+- name: do work on back.infra
+  block:
+    # - name: find all files that are older than 10 days
+    #   find:
+    #     paths: /data/
+    #     age: 10d
+    #     recurse: yes
+    #   register: filesOlderThan10
+
+    # - name: remove older than 10
+    #   file:
+    #     path: "{{ item.path }}" 
+    #     state: absent
+    #   with_items: "{{ filesOlderThan10.files }}"
+    - name: find and remove older directories than 10 days
+      shell: '"find /data/{{ terra_fqdn | default(ansible_fqdn) }}/ -type d -mtime +10 -exec rm -rf {} \;"'
+      # errors must be disabled because if find doesn't find any older file then it return errors
+      ignore_errors: true
+      become: true
+      become_user: root
+
+    - name: ensure directory structure exist
+      ansible.builtin.file:
+        path: "/data/{{ terra_fqdn | default(ansible_fqdn) }}"
+        owner: "{{ backup_user }}"
+        group: "{{ backup_user }}"
+        mode: '0755'
+        state: directory
+
+##  ### actual backup
+##  # do the backup when host != backup_host
+    - name: add backup cronjob
+      ansible.builtin.cron:
+        name: "{{ terra_fqdn | default(ansible_fqdn) }}-crontab"
+        minute: "{{ backup_minute }}"
+        hour: "{{ backup_hour }}"
+        job: "OUTPUT=`rsync -e 'ssh -o StrictHostKeyChecking=accept-new' --rsync-path='/usr/bin/sudo rsync' --exclude /data/prometheus-master -az {{ terra_fqdn | default(ansible_fqdn) }}:/data /data/{{ terra_fqdn | default(ansible_fqdn) }}/{{ terra_fqdn | default(ansible_fqdn) }}_{{ ansible_date_time.date }} 2>&1` || echo \"$OUTPUT\" | mail -s \"Backup failed for {{ terra_fqdn | default(ansible_fqdn) }} \" tech@veidly.com"
+      become: yes
+      become_user: "{{ backup_user }}"
+  delegate_to: "{{ backup_host }}"
+  when: '"{{ backup_host }}" != "{{ terra_fqdn | default(ansible_fqdn) }}"'
+  tags: backup
+

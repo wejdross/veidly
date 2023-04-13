@@ -1,0 +1,6 @@
+backup_host: back.infra.veidly.com
+backup_user: veidly.backup
+backup_remote_directory: /data
+backup_local_directory: /data
+backup_minute: "0"
+backup_hour: "5"

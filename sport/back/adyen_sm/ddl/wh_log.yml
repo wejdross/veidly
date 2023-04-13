@@ -1,0 +1,15 @@
+table:
+  name: wh_log
+  columns:
+    - name: id
+      type: uuid
+    - name: reservation_id
+      type: uuid
+    - name: timestamp
+      type: timestamp
+    - name: message
+      type: jsonb
+    - name: error
+      type: text
+    - name: is_success
+      type: boolean

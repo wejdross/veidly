@@ -1,0 +1,25 @@
+table:
+  name: training_groups
+  columns:
+    - name: id
+      type: uuid
+    - name: user_id
+      type: uuid
+    - name: name
+      type: text
+    - name: max_people
+      type: int
+    - name: max_trainings
+      type: int
+  primary:
+    name: training_grousp_pk
+    columns:
+      - name: id
+  foreign:
+    - name: training_groups_users_fk
+      columns:
+        - name: user_id
+      ref_table: users
+      ref_columns:
+        - name: id
+      on_delete: cascade

@@ -1,0 +1,163 @@
+---
+
+- name: Systemd Workaround
+  ansible.builtin.template:
+    src: "{{ cassandra_systemd_template }}"
+    dest: "{{ cassandra_systemd_path }}"
+    owner: root
+    group: root
+    mode: 0644
+  when: cassandra_systemd_enabled|bool
+  # notify:
+  #   - cassandra_restart_service
+
+- name: Ensure the Service is in the Required State (RedHat)
+  ansible.builtin.systemd:
+    name: cassandra
+    enabled: "{{ cassandra_service_enabled }}"
+    daemon_reload: yes
+    state: "{{ cassandra_service_state }}"
+  when:
+    - not ansible_check_mode
+    - ansible_os_family == 'RedHat'
+
+- name: Ensure the Service is in the Required State (Debian)
+  ansible.builtin.service:
+    name: cassandra
+    enabled: "{{ cassandra_service_enabled }}"
+    state: "{{ cassandra_service_state }}"
+  when:
+    - not ansible_check_mode
+    - ansible_os_family == 'Debian'
+
+- name: create cassandra ca
+  vars:
+    ansible_become: false
+  ansible.builtin.shell: |
+    set -e
+    cd {{ playbook_dir }}/ssl
+    [ -f ca.cert ] && [ -f ca.key ] && exit 0;
+    openssl ecparam -name prime256v1 -genkey -noout -out ca.key
+    openssl req -x509 -key ca.key -out ca.cert -days 365 -sha384 -nodes \
+      -subj "/C=PL/O=veidly/OU=veidly.com/CN=veidly-cassandra-cluster-root-ca"	\
+      -addext "keyUsage = critical,keyCertSign,cRLSign"
+  delegate_to: 127.0.0.1
+
+### requires to have keytool cmd installed locally
+- name: build and sign node cert
+  vars:
+    ansible_become: false
+  ansible.builtin.shell: |
+    set -e
+    cd {{ playbook_dir }}/ssl
+    [ -f {{ ip }}.keystore ] && [ -f {{ ip }}.truststore ] && exit 0;
+
+    openssl ecparam -name prime256v1 -genkey -noout -out {{ ip }}.key
+    openssl req -new -key {{ ip }}.key -nodes -out {{ ip }}.csr -sha384 -subj "/CN={{ ip }}"
+    openssl x509 -req -days 360 -in {{ ip }}.csr -CA ca.cert -CAkey ca.key    \
+      -extfile <(printf "subjectAltName=IP:{{ ip }}")                         \
+      -CAcreateserial -out  {{ ip }}.cert
+
+    # key & cert are ready at this point, but still gotta satisfy JSSE bullshit
+    cat {{ ip }}.key {{ ip }}.cert > {{ ip }}.keycert
+    # keystore
+    openssl pkcs12 -export -in {{ ip }}.keycert -out {{ ip }}.keystore \
+      -name cassks -noiter -nomaciter -passout pass:{{ jks_pass }}
+    # trust store - jre needed
+    keytool -import -file ca.cert -alias cassca -keystore {{ ip }}.truststore \
+      -storepass {{ jks_pass }} -noprompt
+  args:
+    executable: /bin/bash
+  delegate_to: 127.0.0.1
+
+- name: propagate rackdc properties
+  ansible.builtin.copy:
+    content: |
+      dc={{ dc }}
+      rack={{ rack }}
+      prefer_local=true
+    dest: /etc/cassandra/cassandra-rackdc.properties
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: copy key and cert to remote
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: /etc/cassandra/
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - "{{ playbook_dir }}/ssl/{{ ip }}.keystore"
+    - "{{ playbook_dir }}/ssl/{{ ip }}.truststore"
+    - "{{ playbook_dir }}/ssl/{{ ip }}.cert"
+
+# should this file be removed afterwards...?
+- name: copy cqlshrc file
+  ansible.builtin.copy:
+    content: |
+      [connection]
+      factory = cqlshlib.ssl.ssl_transport_factory
+
+      [ssl]
+      certfile = /etc/cassandra/{{ ip }}.cert
+      validate = false
+
+      [authentication]
+      username = cassandra
+      password = {{ cass_pass }}
+    dest: /root/.cqlshrc
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Copy restart script
+  ansible.builtin.copy:
+    content: |
+      #!/bin/bash
+
+      check_est()
+      {
+        cqlsh --ssl -e 'describe cluster' {{ ip }} --cqlshrc /root/.cqlshrc     \
+          -u cassandra -p cassandra || cqlsh --ssl -e 'describe cluster' \
+            {{ ip }} --cqlshrc /root/.cqlshrc
+      }
+
+      check_est && exit 0 || systemctl restart cassandra;
+      for i in {1..30}
+      do
+        check_est && exit 0 || sleep 3;
+      done
+      exit 1
+    dest: /etc/restart_and_wait.sh
+    owner: root
+    group: root
+    mode: '0700'
+
+- name: stop cassandra cluster
+  ansible.builtin.shell: systemctl stop cassandra
+  throttle: 1
+  when: reboot_cluster is defined
+
+- name: clean all cassandra data
+  ansible.builtin.shell: |
+    rm -rf /data/cassandra/*
+    rm -rf /var/log/cassandra/*
+  when: reset_cluster is defined
+
+- name: Restart cassandra service and wait for gossip to settle
+  ansible.builtin.shell: /etc/restart_and_wait.sh
+  register: cass_restart
+  throttle: 1
+  retries: 1
+  delay: 3
+  until: cass_restart.rc == 0
+
+- name: Change default password
+  ansible.builtin.shell: |
+    cqlsh --ssl -e 'describe cluster' {{ ip }} --cqlshrc /root/.cqlshrc     \
+          -u cassandra -p cassandra && cqlsh --ssl \
+            -e "alter user cassandra with password '{{ cass_pass }}'" {{ ip }} --cqlshrc /root/.cqlshrc \
+            -u cassandra -p cassandra || echo nothing
+  run_once: true

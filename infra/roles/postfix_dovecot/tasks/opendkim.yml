@@ -1,0 +1,117 @@
+---
+- name: make sure opendkim is installed
+  package:
+    name: 
+      - opendkim 
+      - opendkim-tools
+    state: present
+
+- name: add postfix to opendkim group
+  ansible.builtin.user:
+    name: postfix
+    groups: opendkim
+    append: yes
+
+- name: add opendkim directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: opendkim
+    group: opendkim
+    mode: 0750
+    state: directory
+  with_items:
+    - /etc/opendkim
+    - /etc/opendkim/keys
+    - "/etc/opendkim/keys/{{ postfix_default_domain }}"
+
+- name: create /etc/opendkim.conf
+  template:
+    src: etc/opendkim.conf
+    dest: /etc/opendkim.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create /etc/opendkim/signing.table
+  template:
+    src: etc/signing.table
+    dest: /etc/opendkim/signing.table
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create /etc/opendkim/signing.key
+  template:
+    src: etc/key.table
+    dest: /etc/opendkim/key.table
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create /etc/opendkim/trusted.hosts
+  template:
+    src: etc/trusted.hosts
+    dest: /etc/opendkim/trusted.hosts
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: Postfix + opendkim directory 
+  ansible.builtin.file:
+    path: /var/spool/postfix/opendkim
+    owner: opendkim
+    group: postfix
+    state: directory
+    mode: 0760
+
+- name: Set SOCKET in /etc/default/opendkim
+  ansible.builtin.lineinfile:
+    path: /etc/default/opendkim
+    regexp: '^SOCKET='
+    line: SOCKET="local:/var/spool/postfix/opendkim/opendkim.sock"
+
+- name: check if keys are present
+  ansible.builtin.stat:
+    path: /etc/opendkim/keys/{{ postfix_default_domain }}/default.private
+  ignore_errors: true
+  register: opendkim_key
+
+#- name: if there is no keys, create them
+#  ansible.builtin.command: "/usr/bin/opendkim-genkey -b 2048 -d {{ postfix_default_domain }} -D /etc/opendkim/keys/{{ postfix_default_domain }} -s default -v"
+#  when: not opendkim_key.stat.exists
+#  notify: restart_opendkim
+
+- name: if there is no keys, create them
+  ansible.builtin.command: 
+    argv: 
+      - /usr/bin/opendkim-genkey
+      - -b 
+      - 2048 
+      - -d 
+      - "{{ postfix_default_domain }}"
+      - -D 
+      - "/etc/opendkim/keys/{{ postfix_default_domain }}"
+      - -s 
+      - default 
+      - -v
+  when: not opendkim_key.stat.exists
+  notify: restart_opendkim
+
+- name: Change key ownership
+  ansible.builtin.file:
+    path: "/etc/opendkim/keys/{{ postfix_default_domain }}/default.private"
+    owner: opendkim
+    group: opendkim
+    mode: '0600'
+
+- name: register file content 
+  ansible.builtin.command: 
+    argv:
+      - cat 
+      - "/etc/opendkim/keys/{{ postfix_default_domain }}/default.txt"
+  register: opendkim_publick_key
+
+- name: Print to console pub_key to be added to DNS
+  debug:
+    msg: "{{opendkim_publick_key.stdout}}"

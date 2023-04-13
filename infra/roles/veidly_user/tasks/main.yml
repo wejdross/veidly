@@ -1,0 +1,28 @@
+---
+# tasks file for veidly_user
+- name: make sure sudo group exists
+  ansible.builtin.group:
+    name: sudo
+    state: present
+- name: make sure sudoers are valid
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: visudo -cf %s
+- name: create_user
+  ansible.builtin.user:
+    name: "{{ item.user }}"
+    state: present
+    groups: "{{ item.groups }}"
+    append: yes
+    shell: /bin/bash
+    create_home: yes
+  with_items: "{{ all_users }}"
+- name: add public keys
+  ansible.posix.authorized_key:
+    user: "{{ item.user }}"
+    state: present
+    key: "{{ item.ssh_key }}"
+  with_items: "{{ all_users }}"

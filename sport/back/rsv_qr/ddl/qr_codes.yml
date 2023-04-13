@@ -1,0 +1,21 @@
+table:
+  name: rsv_qr_codes
+  columns:
+    - name: id
+      type: uuid
+    - name: rsv_id
+      type: uuid
+
+  primary:
+    name: rsv_qr_codes_pk
+    columns:
+      - name: id
+
+  foreign:
+    - name: fk_qr_codes_rsv_id
+      columns:
+        - name: rsv_id
+      ref_columns:
+        - name: id
+      ref_table: reservations
+      on_delete: cascade

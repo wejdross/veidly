@@ -1,0 +1,39 @@
+table:
+  name: charts
+  columns:
+    - name: id
+      type: bigint
+      identity: true
+    - name: instr_id
+      type: uuid
+    - name: user_id
+      type: uuid
+    - name: timestamp
+      type: int
+    - name: label
+      type: text
+    - name: value
+      type: int
+    - name: chart_type
+      type: int
+  
+  primary:
+    name: id_pk
+    columns:
+      - name: id
+
+  foreign:
+    - name: charts_instr_fk
+      columns:
+        - name: instr_id
+      ref_table: instructors
+      ref_columns:
+        - name: id
+      on_delete: cascade
+    - name: charts_user_fk
+      columns:
+        - name: user_id
+      ref_columns:
+        - name: id
+      ref_table: users
+      on_delete: cascade

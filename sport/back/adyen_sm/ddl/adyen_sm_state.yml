@@ -1,0 +1,20 @@
+type:
+# allowed states for adyen_sm
+  name: adyen_sm_state
+  type: enum
+  values:
+    - link
+    - link_express
+    - hold
+    - wait_cancel_or_refund
+    - cancel_or_refund
+    - retry_cancel_or_refund
+    - wait_capture
+    - capture
+    - wait_payout
+    - payout
+    - error
+    - link_expire
+    - wait_refund
+    - refund
+    - dispute

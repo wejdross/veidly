@@ -1,0 +1,82 @@
+table:
+  name: subs
+  columns:
+    - name: id
+      type: uuid
+      
+    - name: sub_model
+      type: jsonb
+    - name: sub_model_id
+      type: uuid
+    - name: instructor_id
+      type: uuid
+    - name: instr_user_id
+      type: uuid
+    - name: user_id
+      type: uuid
+    - name: ref_id
+      type: uuid
+
+    - name: instructor_decision
+      type: instructor_decision
+    - name: state
+      type: adyen_sm_state
+
+    - name: sm_cache
+      type: jsonb
+    - name: sm_retries
+      type: int
+    - name: sm_timeout
+      type: timestamp
+
+    - name: is_confirmed
+      type: bool
+    - name: is_active
+      type: bool
+    - name: order_id
+      type: text
+
+    - name: created_on
+      type: timestamp
+
+    - name: link_id
+      type: text
+    - name: link_url
+      type: text
+
+    - name: date_start
+      type: timestamp
+    - name: date_end
+      type: timestamp
+
+    - name: remaining_entries
+      type: int
+
+  primary:
+    name: subs_pk
+    columns:
+      - name: id
+
+  foreign:
+    
+    - name: subs_sub_models_fk
+      columns:
+        - name: sub_model_id
+      ref_columns:
+        - name: id
+      ref_table: sub_models
+      on_delete: set null
+
+    - name: subs_instr_fk
+      columns:
+        - name: instructor_id
+      ref_columns:
+        - name: id
+      ref_table: instructors
+  
+    - name: subs_users_fk
+      columns:
+        - name: user_id
+      ref_columns:
+        - name: id
+      ref_table: users

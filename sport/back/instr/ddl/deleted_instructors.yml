@@ -1,0 +1,15 @@
+table:
+  name: deleted_instructors
+  columns:
+    - name: email
+      type: text
+    - name: refunds
+      type: jsonb
+      default: "'{}'"
+    - name: queued_payout_cuts
+      type: int
+      default: 0 
+  primary:
+    name: deleted_instructors_pk
+    columns:
+      - name: email

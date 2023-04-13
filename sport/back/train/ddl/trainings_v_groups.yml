@@ -1,0 +1,20 @@
+table:
+  name: trainings_v_groups
+  columns:
+    - name: training_id
+      type: uuid
+    - name: group_ids
+      type: text[]
+    - name: groups
+      type: jsonb
+    
+  primary:
+    name: trainings_v_groups_pk
+    columns:
+      - name: training_id
+  
+  indexes:
+    - name: trainings_v_groups_group_ids_gin
+      columns:
+        - name: group_ids
+      using: gin

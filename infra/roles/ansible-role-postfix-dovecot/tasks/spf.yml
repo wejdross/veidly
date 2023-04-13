@@ -1,0 +1,5 @@
+---
+- name: Ensure potfix SPF plugin is installed
+  package:
+    name: postfix-policyd-spf-python
+    state: present
